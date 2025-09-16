@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,16 +14,20 @@
     <div class="container nav-bar">
       <a class="brand" href="index.html">
         <img src="logo-kinh-do-635x516-152344819.png" alt="Kinh Do Foods logo" />
-        <span>Kinh Do Foods</span>
       </a>
       <nav aria-label="Primary">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a class="active" aria-current="page" href="contact.html">Contact</a></li>
+          <li><a data-i18n="navHome" href="index.html">Trang chủ</a></li>
+          <li><a data-i18n="navProducts" href="products.html">Sản phẩm</a></li>
+          <li><a class="active" aria-current="page" data-i18n="navContact" href="contact.html">Liên hệ</a></li>
         </ul>
       </nav>
-      <a class="btn btn-primary" href="mailto:hello@kinhdo.com">Email Us</a>
+      <div class="header-actions">
+        <button class="btn btn-ghost language-toggle" type="button" id="language-toggle" aria-label="Switch to Vietnamese">
+          Tiếng Việt
+        </button>
+        <a class="btn btn-primary" data-i18n="navEmail" href="mailto:hello@kinhdo.com">Gửi email</a>
+      </div>
     </div>
   </header>
 
@@ -31,24 +35,24 @@
     <section class="hero contact-hero">
       <div class="container">
         <div class="hero-note hero-content">
-          <span class="hero-eyebrow">We’re here to help</span>
-          <h1>Connect With the Kinh Do Team</h1>
-          <p>
-            Whether you are planning a Mid-Autumn soirée, designing a corporate gifting experience, or simply craving
-            your favourite treats, our specialists are ready to support you.
+          <span class="hero-eyebrow" data-i18n="heroEyebrow">Chúng tôi luôn sẵn sàng</span>
+          <h1 data-i18n="heroTitle">Kết nối cùng đội ngũ Kinh Đô</h1>
+          <p data-i18n="heroDescription">
+            Dù bạn đang chuẩn bị tiệc Trung Thu, thiết kế quà tặng doanh nghiệp hay chỉ đơn giản muốn thưởng thức món bánh yêu
+            thích, các chuyên viên của chúng tôi luôn sẵn sàng hỗ trợ.
           </p>
           <div class="cta-group">
-            <a class="btn btn-primary" href="mailto:hello@kinhdo.com">Say Hello</a>
-            <a class="btn btn-ghost" href="tel:+8402839499888">Call Our Flagship</a>
+            <a class="btn btn-primary" data-i18n="heroPrimaryCta" href="mailto:hello@kinhdo.com">Gửi lời chào</a>
+            <a class="btn btn-ghost" data-i18n="heroSecondaryCta" href="tel:+8402839499888">Gọi đến flagship</a>
           </div>
         </div>
-        <div class="card hero-card" aria-hidden="true">
-          <span class="card-overline">Visiting Hours</span>
-          <h2>Ho Chi Minh City Flagship</h2>
-          <p>Open daily from 9:00 – 21:00 with dedicated tasting sessions every weekend.</p>
+        <div class="card hero-card">
+          <span class="card-overline" data-i18n="contactCardOverline">Giờ đón khách</span>
+          <h2 data-i18n="contactCardTitle">Flagship TP. Hồ Chí Minh</h2>
+          <p data-i18n="contactCardDescription">Mở cửa hằng ngày 9:00 – 21:00 với phiên thử bánh cuối tuần dành riêng cho bạn.</p>
           <div class="hero-card-footer">
-            <span>141 Nguyen Du, District 1</span>
-            <span>Reserve a tasting today</span>
+            <span data-i18n="contactCardFootnote1">141 Nguyễn Du, Quận 1</span>
+            <span data-i18n="contactCardFootnote2">Đặt lịch trải nghiệm hôm nay</span>
           </div>
         </div>
       </div>
@@ -58,21 +62,30 @@
       <div class="container">
         <div class="contact">
           <div class="section-heading">
-            <h2>Visit, Call, or Collaborate</h2>
-            <p>Share your vision with us and we’ll craft the perfect assortment, experience, or partnership.</p>
+            <h2 data-i18n="contactHeading">Đến thăm, gọi điện hoặc hợp tác</h2>
+            <p data-i18n="contactIntro">Chia sẻ mong muốn của bạn và chúng tôi sẽ kiến tạo bộ sản phẩm, trải nghiệm hay quan hệ hợp tác hoàn hảo.</p>
           </div>
           <div class="contact-details">
             <div class="contact-card">
-              <h4>Visit Our Flagship</h4>
-              <p>141 Nguyen Du, District 1<br />Ho Chi Minh City, Vietnam</p>
+              <h4 data-i18n="contactVisitTitle">Ghé thăm cửa hàng flagship</h4>
+              <p>
+                <span data-i18n="contactVisitLine1">141 Nguyễn Du, Quận 1</span><br />
+                <span data-i18n="contactVisitLine2">TP. Hồ Chí Minh, Việt Nam</span>
+              </p>
             </div>
             <div class="contact-card">
-              <h4>Say Hello</h4>
-              <p><a href="mailto:hello@kinhdo.com">hello@kinhdo.com</a><br /><a href="tel:+8402839499888">+84 (0)28 3949 9888</a></p>
+              <h4 data-i18n="contactSayTitle">Gửi lời chào</h4>
+              <p>
+                <a href="mailto:hello@kinhdo.com">hello@kinhdo.com</a><br />
+                <a href="tel:+8402839499888">+84 (0)28 3949 9888</a>
+              </p>
             </div>
             <div class="contact-card">
-              <h4>Business Partnerships</h4>
-              <p><a href="mailto:partners@kinhdo.com">partners@kinhdo.com</a><br />Tailored mooncake &amp; gifting programs</p>
+              <h4 data-i18n="contactPartnersTitle">Đối tác kinh doanh</h4>
+              <p>
+                <a href="mailto:partners@kinhdo.com">partners@kinhdo.com</a><br />
+                <span data-i18n="contactPartnersDescription">Chương trình bánh trung thu &amp; quà tặng theo yêu cầu</span>
+              </p>
             </div>
           </div>
         </div>
@@ -81,22 +94,135 @@
 
     <section>
       <div class="container cta-banner">
-        <h3>Schedule a Tasting or Consultation</h3>
-        <p>Let us know your goals and we’ll curate samples, pairings, and packaging ideas that wow your guests.</p>
-        <a class="btn btn-ghost" href="mailto:partners@kinhdo.com">Book an Appointment</a>
+        <h3 data-i18n="ctaBannerHeading">Đặt lịch thử bánh hoặc tư vấn</h3>
+        <p data-i18n="ctaBannerText">Hãy cho chúng tôi biết mong đợi của bạn và chúng tôi sẽ chuẩn bị mẫu thử, gợi ý phối trà và ý tưởng bao bì thật ấn tượng.</p>
+        <a class="btn btn-ghost" data-i18n="ctaBannerButton" href="mailto:partners@kinhdo.com">Đặt lịch hẹn</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <small>&copy; <span id="year"></span> Kinh Do Foods. All rights reserved.</small>
-      <small>Follow our journey on <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+      <small>&copy; <span id="year"></span> <span data-i18n="footerCopy">Kinh Do Foods. Bảo lưu mọi quyền.</span></small>
+      <small><span data-i18n="footerSocial">Theo dõi hành trình của chúng tôi trên</span> <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const translations = {
+      en: {
+        navHome: 'Home',
+        navProducts: 'Products',
+        navContact: 'Contact',
+        navEmail: 'Email Us',
+        heroEyebrow: 'We’re here to help',
+        heroTitle: 'Connect With the Kinh Do Team',
+        heroDescription:
+          'Whether you are planning a Mid-Autumn soirée, designing a corporate gifting experience, or simply craving your favourite treats, our specialists are ready to support you.',
+        heroPrimaryCta: 'Say Hello',
+        heroSecondaryCta: 'Call Our Flagship',
+        contactCardOverline: 'Visiting Hours',
+        contactCardTitle: 'Ho Chi Minh City Flagship',
+        contactCardDescription: 'Open daily from 9:00 – 21:00 with dedicated tasting sessions every weekend.',
+        contactCardFootnote1: '141 Nguyen Du, District 1',
+        contactCardFootnote2: 'Reserve a tasting today',
+        contactHeading: 'Visit, Call, or Collaborate',
+        contactIntro: 'Share your vision with us and we’ll craft the perfect assortment, experience, or partnership.',
+        contactVisitTitle: 'Visit Our Flagship',
+        contactVisitLine1: '141 Nguyen Du, District 1',
+        contactVisitLine2: 'Ho Chi Minh City, Vietnam',
+        contactSayTitle: 'Say Hello',
+        contactPartnersTitle: 'Business Partnerships',
+        contactPartnersDescription: 'Tailored mooncake & gifting programs',
+        ctaBannerHeading: 'Schedule a Tasting or Consultation',
+        ctaBannerText:
+          'Let us know your goals and we’ll curate samples, pairings, and packaging ideas that wow your guests.',
+        ctaBannerButton: 'Book an Appointment',
+        footerCopy: 'Kinh Do Foods. All rights reserved.',
+        footerSocial: 'Follow our journey on'
+      },
+      vi: {
+        navHome: 'Trang chủ',
+        navProducts: 'Sản phẩm',
+        navContact: 'Liên hệ',
+        navEmail: 'Gửi email',
+        heroEyebrow: 'Chúng tôi luôn sẵn sàng',
+        heroTitle: 'Kết nối cùng đội ngũ Kinh Đô',
+        heroDescription:
+          'Dù bạn đang chuẩn bị tiệc Trung Thu, thiết kế quà tặng doanh nghiệp hay chỉ đơn giản muốn thưởng thức món bánh yêu thích, các chuyên viên của chúng tôi luôn sẵn sàng hỗ trợ.',
+        heroPrimaryCta: 'Gửi lời chào',
+        heroSecondaryCta: 'Gọi đến flagship',
+        contactCardOverline: 'Giờ đón khách',
+        contactCardTitle: 'Flagship TP. Hồ Chí Minh',
+        contactCardDescription: 'Mở cửa hằng ngày 9:00 – 21:00 với phiên thử bánh cuối tuần dành riêng cho bạn.',
+        contactCardFootnote1: '141 Nguyễn Du, Quận 1',
+        contactCardFootnote2: 'Đặt lịch trải nghiệm hôm nay',
+        contactHeading: 'Đến thăm, gọi điện hoặc hợp tác',
+        contactIntro: 'Chia sẻ mong muốn của bạn và chúng tôi sẽ kiến tạo bộ sản phẩm, trải nghiệm hay quan hệ hợp tác hoàn hảo.',
+        contactVisitTitle: 'Ghé thăm cửa hàng flagship',
+        contactVisitLine1: '141 Nguyễn Du, Quận 1',
+        contactVisitLine2: 'TP. Hồ Chí Minh, Việt Nam',
+        contactSayTitle: 'Gửi lời chào',
+        contactPartnersTitle: 'Đối tác kinh doanh',
+        contactPartnersDescription: 'Chương trình bánh trung thu & quà tặng theo yêu cầu',
+        ctaBannerHeading: 'Đặt lịch thử bánh hoặc tư vấn',
+        ctaBannerText:
+          'Hãy cho chúng tôi biết mong đợi của bạn và chúng tôi sẽ chuẩn bị mẫu thử, gợi ý phối trà và ý tưởng bao bì thật ấn tượng.',
+        ctaBannerButton: 'Đặt lịch hẹn',
+        footerCopy: 'Kinh Do Foods. Bảo lưu mọi quyền.',
+        footerSocial: 'Theo dõi hành trình của chúng tôi trên'
+      }
+    };
+
+    const translatableElements = document.querySelectorAll('[data-i18n]');
+    const languageToggle = document.getElementById('language-toggle');
+    const LANGUAGE_STORAGE_KEY = 'kinhdoLanguage';
+    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    let currentLanguage = savedLanguage === 'en' || savedLanguage === 'vi' ? savedLanguage : 'vi';
+
+    const applyTranslations = (language) => {
+      const locale = language === 'vi' ? 'vi' : 'en';
+      document.documentElement.setAttribute('lang', locale);
+
+      translatableElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        const translation = translations[locale][key];
+
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+    };
+
+    const updateToggleLabel = (language) => {
+      if (!languageToggle) return;
+
+      if (language === 'vi') {
+        languageToggle.textContent = 'English';
+        languageToggle.setAttribute('aria-label', 'Switch to English');
+      } else {
+        languageToggle.textContent = 'Tiếng Việt';
+        languageToggle.setAttribute('aria-label', 'Switch to Vietnamese');
+      }
+    };
+
+    const setLanguage = (language) => {
+      const locale = language === 'vi' ? 'vi' : 'en';
+      currentLanguage = locale;
+      applyTranslations(locale);
+      updateToggleLabel(locale);
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, locale);
+    };
+
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        setLanguage(currentLanguage === 'en' ? 'vi' : 'en');
+      });
+    }
+
+    setLanguage(currentLanguage);
   </script>
 </body>
 </html>
