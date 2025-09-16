@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,16 +14,20 @@
     <div class="container nav-bar">
       <a class="brand" href="index.html">
         <img src="logo-kinh-do-635x516-152344819.png" alt="Kinh Do Foods logo" />
-        <span>Kinh Do Foods</span>
       </a>
       <nav aria-label="Primary">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a class="active" aria-current="page" href="products.html">Products</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a data-i18n="navHome" href="index.html">Trang chủ</a></li>
+          <li><a class="active" aria-current="page" data-i18n="navProducts" href="products.html">Sản phẩm</a></li>
+          <li><a data-i18n="navContact" href="contact.html">Liên hệ</a></li>
         </ul>
       </nav>
-      <a class="btn btn-primary" href="contact.html">Plan a Custom Order</a>
+      <div class="header-actions">
+        <button class="btn btn-ghost language-toggle" type="button" id="language-toggle" aria-label="Switch to Vietnamese">
+          Tiếng Việt
+        </button>
+        <a class="btn btn-primary" data-i18n="navCta" href="contact.html">Lên kế hoạch đơn hàng</a>
+      </div>
     </div>
   </header>
 
@@ -31,24 +35,27 @@
     <section class="hero product-hero">
       <div class="container">
         <div class="hero-note hero-content">
-          <span class="hero-eyebrow">Seasonal &amp; Signature</span>
-          <h1>Discover Our Mooncake &amp; Bakery Collections</h1>
-          <p>
-            From handcrafted lotus seed mooncakes to everyday delights, every Kinh Do creation is made to share.
-            Explore our curated collections and find the perfect treats for every celebration.
+          <span class="hero-eyebrow" data-i18n="heroEyebrow">Theo mùa &amp; biểu tượng</span>
+          <h1 data-i18n="heroTitle">Khám phá bộ sưu tập bánh trung thu &amp; tiệm bánh của chúng tôi</h1>
+          <p data-i18n="heroDescription">
+            Từ những chiếc bánh trung thu hạt sen thủ công đến món ngon hằng ngày, mỗi sáng tạo Kinh Đô đều được làm ra để sẻ
+            chia. Khám phá bộ sưu tập tuyển chọn và tìm món quà hoàn hảo cho mọi dịp.
           </p>
           <div class="cta-group">
-            <a class="btn btn-primary" href="#collections">Browse Collections</a>
-            <a class="btn btn-ghost" href="contact.html">Request a Catalogue</a>
+            <a class="btn btn-primary" data-i18n="heroPrimaryCta" href="#collections">Xem các bộ sưu tập</a>
+            <a class="btn btn-ghost" data-i18n="heroSecondaryCta" href="contact.html">Yêu cầu catalog</a>
           </div>
         </div>
-        <div class="card hero-card" aria-hidden="true">
-          <span class="card-overline">Featured Hamper</span>
-          <h2>Moonlit Reunion Set</h2>
-          <p>Four artisanal mooncakes, jasmine tea pairing, and personalised greeting card nestled in lacquered packaging.</p>
+        <div class="card hero-card">
+          <figure class="hero-card-media">
+            <img src="banh-trung-thu-kinh-do-25-nam-phien-ban-gioi-han-289310414.jpg" alt="Bộ bánh trung thu Kinh Đô phiên bản giới hạn kỷ niệm 25 năm" />
+          </figure>
+          <span class="card-overline" data-i18n="heroCardOverline">Hộp quà nổi bật</span>
+          <h2 data-i18n="heroCardTitle">Bộ kỷ niệm 25 năm</h2>
+          <p data-i18n="heroCardDescription">Bộ quà phiên bản giới hạn tôn vinh 25 năm tinh hoa Kinh Đô với 4 bánh trung thu thượng hạng, trà ô long và phụ kiện lưu niệm.</p>
           <div class="hero-card-footer">
-            <span>Pre-order ships in 3 days</span>
-            <span>Complimentary gift wrap</span>
+            <span data-i18n="heroCardFootnote1">Giao trước trong 3 ngày</span>
+            <span data-i18n="heroCardFootnote2">Tặng kèm gói quà</span>
           </div>
         </div>
       </div>
@@ -57,35 +64,35 @@
     <section id="collections">
       <div class="container">
         <div class="section-heading">
-          <h2>Signature Collections</h2>
-          <p>A curated range of delights shaped by heritage, innovation, and the rhythm of Vietnam’s festivities.</p>
+          <h2 data-i18n="collectionsHeading">Bộ sưu tập tiêu biểu</h2>
+          <p data-i18n="collectionsDescription">Bộ sưu tập tinh tế kết hợp di sản, sáng tạo và nhịp điệu lễ hội Việt Nam.</p>
         </div>
         <div class="card-grid">
           <article class="card">
-            <h3>Mooncake Gallery</h3>
-            <p>Traditional baked mooncakes, snow-skin inspirations, and premium gift sets designed for the Mid-Autumn reunion.</p>
+            <h3 data-i18n="collectionsCard1Title">Bộ sưu tập bánh trung thu</h3>
+            <p data-i18n="collectionsCard1Description">Bánh nướng truyền thống, cảm hứng tuyết lạnh và hộp quà cao cấp dành riêng cho đêm đoàn viên.</p>
             <ul class="tags">
-              <li>Lotus &amp; Salted Egg</li>
-              <li>Custard Lava</li>
-              <li>Tea Pairings</li>
+              <li data-i18n="collectionsCard1Tag1">Hạt sen &amp; trứng muối</li>
+              <li data-i18n="collectionsCard1Tag2">Nhân custard tan chảy</li>
+              <li data-i18n="collectionsCard1Tag3">Phối trà tinh tế</li>
             </ul>
           </article>
           <article class="card">
-            <h3>Everyday Pleasures</h3>
-            <p>Pillowy breads, crispy biscuits, and indulgent wafers crafted for breakfast, tea time, and everything in between.</p>
+            <h3 data-i18n="collectionsCard2Title">Niềm vui mỗi ngày</h3>
+            <p data-i18n="collectionsCard2Description">Bánh mì mềm, bánh quy giòn và wafers đậm đà cho bữa sáng, trà chiều và mọi khoảnh khắc thường nhật.</p>
             <ul class="tags">
-              <li>Soft Buns</li>
-              <li>Crackers</li>
-              <li>Chocolate Treats</li>
+              <li data-i18n="collectionsCard2Tag1">Bánh mì mềm</li>
+              <li data-i18n="collectionsCard2Tag2">Bánh quy</li>
+              <li data-i18n="collectionsCard2Tag3">Socola ngọt ngào</li>
             </ul>
           </article>
           <article class="card">
-            <h3>Celebration Hampers</h3>
-            <p>Elegant assortments featuring artisanal teas, confections, and limited-edition creations perfect for gifting.</p>
+            <h3 data-i18n="collectionsCard3Title">Giỏ quà lễ hội</h3>
+            <p data-i18n="collectionsCard3Description">Bộ quà thanh lịch với trà thủ công, kẹo ngon và sáng tạo giới hạn hoàn hảo để tặng nhau.</p>
             <ul class="tags">
-              <li>Seasonal Boxes</li>
-              <li>Corporate Gifts</li>
-              <li>Custom Engraving</li>
+              <li data-i18n="collectionsCard3Tag1">Hộp theo mùa</li>
+              <li data-i18n="collectionsCard3Tag2">Quà tặng doanh nghiệp</li>
+              <li data-i18n="collectionsCard3Tag3">Khắc tên riêng</li>
             </ul>
           </article>
         </div>
@@ -95,37 +102,37 @@
     <section class="featured-products" aria-labelledby="featured-products">
       <div class="container">
         <div class="section-heading">
-          <h2 id="featured-products">Featured Products</h2>
-          <p>Limited seasonal releases that highlight the craftsmanship and flavours at the heart of Kinh Do mooncakes.</p>
+          <h2 id="featured-products" data-i18n="featuredHeading">Sản phẩm nổi bật</h2>
+          <p data-i18n="featuredDescription">Những phiên bản theo mùa tôn vinh tay nghề và hương vị đặc trưng của bánh trung thu Kinh Đô.</p>
         </div>
         <div class="product-grid">
           <article class="product-card">
             <figure>
-              <img src="products/8934680042567-tet-1.jpg-236424703.png" alt="Deluxe Kinh Do mooncake gift set with vibrant red packaging." />
+              <img src="products/8934680042567-tet-1.jpg-236424703.png" alt="Hộp quà bánh trung thu Kinh Đô sắc đỏ sang trọng." />
             </figure>
             <div class="product-info">
               <div>
-                <h3>Heritage Lantern Collection</h3>
-                <p>A keepsake hamper with four signature baked mooncakes, jasmine tea pairing, and a silk lantern-inspired box.</p>
+                <h3 data-i18n="featuredProduct1Title">Bộ đèn lồng di sản</h3>
+                <p data-i18n="featuredProduct1Description">Hộp quà lưu niệm gồm bốn bánh nướng biểu tượng, trà lài phối kèm và hộp lấy cảm hứng từ lồng đèn lụa.</p>
               </div>
               <div class="product-meta">
-                <span class="price">₫850,000</span>
-                <a class="btn btn-primary" href="contact.html">Reserve Now</a>
+                <span class="price" data-i18n="featuredProduct1Price">₫850,000</span>
+                <a class="btn btn-primary" data-i18n="featuredProduct1Cta" href="contact.html">Đặt trước ngay</a>
               </div>
             </div>
           </article>
           <article class="product-card">
             <figure>
-              <img src="products/banh-trung-thu-kinh-do-deo-dau-xanh-hat-dua-0-trung-230gr-3901982844.jpg" alt="Green bean and melon seed mochi-style mooncake from Kinh Do." />
+              <img src="products/banh-trung-thu-kinh-do-deo-dau-xanh-hat-dua-0-trung-230gr-3901982844.jpg" alt="Bánh dẻo đậu xanh lá dứa của Kinh Đô." />
             </figure>
             <div class="product-info">
               <div>
-                <h3>Soft Green Bean Mochi Cake</h3>
-                <p>Chewy snow-skin mooncake filled with pandan green bean paste and crunchy melon seeds for a modern twist.</p>
+                <h3 data-i18n="featuredProduct2Title">Bánh dẻo đậu xanh mềm</h3>
+                <p data-i18n="featuredProduct2Description">Bánh dẻo kiểu tuyết với nhân đậu xanh lá dứa và hạt dưa giòn mang hơi thở hiện đại.</p>
               </div>
               <div class="product-meta">
-                <span class="price">₫120,000</span>
-                <a class="btn btn-primary" href="contact.html">Add to Order</a>
+                <span class="price" data-i18n="featuredProduct2Price">₫120,000</span>
+                <a class="btn btn-primary" data-i18n="featuredProduct2Cta" href="contact.html">Thêm vào đơn</a>
               </div>
             </div>
           </article>
@@ -137,23 +144,32 @@
       <div class="container">
         <div class="spotlight">
           <div>
-            <h3>Mooncakes Illuminated</h3>
-            <p>Every mooncake is a story of artistry — from responsibly sourced ingredients to the final brush of gold. Our chefs balance tradition with contemporary flavours to create experiences that linger beyond the festival night.</p>
+            <h3 data-i18n="spotlightHeading">Bánh trung thu tỏa sáng</h3>
+            <p data-i18n="spotlightDescription">Mỗi chiếc bánh là câu chuyện nghệ thuật — từ nguyên liệu truy xuất bền vững đến nét cọ vàng cuối cùng. Đầu bếp cân bằng truyền thống và hương vị đương đại để dư âm vượt đêm rằm.</p>
             <ul class="spotlight-list">
-              <li><span>01</span>Limited reserve fillings with single-origin Vietnamese cacao.</li>
-              <li><span>02</span>Hand-painted motifs inspired by the lantern-lit streets of Hội An.</li>
-              <li><span>03</span>Smart packaging engineered to stay fresh while reducing waste.</li>
+              <li>
+                <span class="spotlight-index">01</span>
+                <span data-i18n="spotlightList1">Nhân giới hạn làm từ cacao đơn nguồn Việt Nam.</span>
+              </li>
+              <li>
+                <span class="spotlight-index">02</span>
+                <span data-i18n="spotlightList2">Họa tiết vẽ tay lấy cảm hứng từ phố lồng đèn Hội An.</span>
+              </li>
+              <li>
+                <span class="spotlight-index">03</span>
+                <span data-i18n="spotlightList3">Bao bì thông minh giữ độ tươi và giảm lãng phí.</span>
+              </li>
             </ul>
           </div>
           <div class="card">
-            <h3>Designing the Perfect Gift</h3>
-            <p>Choose from modular gift boxes that adapt to your brand or family story. Add personalised greetings, bespoke ribbons, and curated tea pairings to enrich every exchange of mooncakes.</p>
+            <h3 data-i18n="spotlightCardTitle">Thiết kế món quà hoàn hảo</h3>
+            <p data-i18n="spotlightCardDescription">Chọn hộp quà mô-đun phù hợp câu chuyện thương hiệu hoặc gia đình. Thêm thiệp chúc cá nhân, ruy băng riêng và phối trà để nâng tầm trao gửi.</p>
             <ul class="tags">
-              <li>Personal Concierge</li>
-              <li>Custom Artwork</li>
-              <li>Global Delivery</li>
+              <li data-i18n="spotlightTag1">Chuyên viên riêng</li>
+              <li data-i18n="spotlightTag2">Họa tiết theo yêu cầu</li>
+              <li data-i18n="spotlightTag3">Giao hàng toàn cầu</li>
             </ul>
-            <a class="btn btn-primary" href="contact.html">Plan Your Hamper</a>
+            <a class="btn btn-primary" data-i18n="spotlightCardCta" href="contact.html">Lên kế hoạch hộp quà</a>
           </div>
         </div>
       </div>
@@ -161,22 +177,214 @@
 
     <section>
       <div class="container cta-banner">
-        <h3>Create a Bespoke Festive Experience</h3>
-        <p>Collaborate with our team to design branded hampers, curated tasting events, and memorable corporate gifting.</p>
-        <a class="btn btn-ghost" href="contact.html">Speak with a Specialist</a>
+        <h3 data-i18n="ctaBannerHeading">Kiến tạo trải nghiệm lễ hội riêng</h3>
+        <p data-i18n="ctaBannerText">Đồng hành cùng đội ngũ chúng tôi để thiết kế giỏ quà thương hiệu, sự kiện thử nếm và quà tặng doanh nghiệp đáng nhớ.</p>
+        <a class="btn btn-ghost" data-i18n="ctaBannerButton" href="contact.html">Trao đổi với chuyên gia</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <small>&copy; <span id="year"></span> Kinh Do Foods. All rights reserved.</small>
-      <small>Follow our journey on <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+      <small>&copy; <span id="year"></span> <span data-i18n="footerCopy">Kinh Do Foods. Bảo lưu mọi quyền.</span></small>
+      <small><span data-i18n="footerSocial">Theo dõi hành trình của chúng tôi trên</span> <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const translations = {
+      en: {
+        navHome: 'Home',
+        navProducts: 'Products',
+        navContact: 'Contact',
+        navCta: 'Plan a Custom Order',
+        heroEyebrow: 'Seasonal & Signature',
+        heroTitle: 'Discover Our Mooncake & Bakery Collections',
+        heroDescription:
+          'From handcrafted lotus seed mooncakes to everyday delights, every Kinh Do creation is made to share. Explore our curated collections and find the perfect treats for every celebration.',
+        heroPrimaryCta: 'Browse Collections',
+        heroSecondaryCta: 'Request a Catalogue',
+        heroCardOverline: 'Featured Hamper',
+        heroCardTitle: '25 Year Anniversary Set',
+        heroCardDescription:
+          'Limited-edition collection celebrating 25 years of Kinh Do craftsmanship with four premium mooncakes, oolong tea, and keepsake accessories.',
+        heroCardFootnote1: 'Pre-order ships in 3 days',
+        heroCardFootnote2: 'Complimentary gift wrap',
+        collectionsHeading: 'Signature Collections',
+        collectionsDescription:
+          'A curated range of delights shaped by heritage, innovation, and the rhythm of Vietnam’s festivities.',
+        collectionsCard1Title: 'Mooncake Gallery',
+        collectionsCard1Description:
+          'Traditional baked mooncakes, snow-skin inspirations, and premium gift sets designed for the Mid-Autumn reunion.',
+        collectionsCard1Tag1: 'Lotus & Salted Egg',
+        collectionsCard1Tag2: 'Custard Lava',
+        collectionsCard1Tag3: 'Tea Pairings',
+        collectionsCard2Title: 'Everyday Pleasures',
+        collectionsCard2Description:
+          'Pillowy breads, crispy biscuits, and indulgent wafers crafted for breakfast, tea time, and everything in between.',
+        collectionsCard2Tag1: 'Soft Buns',
+        collectionsCard2Tag2: 'Crackers',
+        collectionsCard2Tag3: 'Chocolate Treats',
+        collectionsCard3Title: 'Celebration Hampers',
+        collectionsCard3Description:
+          'Elegant assortments featuring artisanal teas, confections, and limited-edition creations perfect for gifting.',
+        collectionsCard3Tag1: 'Seasonal Boxes',
+        collectionsCard3Tag2: 'Corporate Gifts',
+        collectionsCard3Tag3: 'Custom Engraving',
+        featuredHeading: 'Featured Products',
+        featuredDescription:
+          'Limited seasonal releases that highlight the craftsmanship and flavours at the heart of Kinh Do mooncakes.',
+        featuredProduct1Title: 'Heritage Lantern Collection',
+        featuredProduct1Description:
+          'A keepsake hamper with four signature baked mooncakes, jasmine tea pairing, and a silk lantern-inspired box.',
+        featuredProduct1Price: '₫850,000',
+        featuredProduct1Cta: 'Reserve Now',
+        featuredProduct2Title: 'Soft Green Bean Mochi Cake',
+        featuredProduct2Description:
+          'Chewy snow-skin mooncake filled with pandan green bean paste and crunchy melon seeds for a modern twist.',
+        featuredProduct2Price: '₫120,000',
+        featuredProduct2Cta: 'Add to Order',
+        spotlightHeading: 'Mooncakes Illuminated',
+        spotlightDescription:
+          'Every mooncake is a story of artistry — from responsibly sourced ingredients to the final brush of gold. Our chefs balance tradition with contemporary flavours to create experiences that linger beyond the festival night.',
+        spotlightList1: 'Limited reserve fillings with single-origin Vietnamese cacao.',
+        spotlightList2: 'Hand-painted motifs inspired by the lantern-lit streets of Hội An.',
+        spotlightList3: 'Smart packaging engineered to stay fresh while reducing waste.',
+        spotlightCardTitle: 'Designing the Perfect Gift',
+        spotlightCardDescription:
+          'Choose from modular gift boxes that adapt to your brand or family story. Add personalised greetings, bespoke ribbons, and curated tea pairings to enrich every exchange of mooncakes.',
+        spotlightTag1: 'Personal Concierge',
+        spotlightTag2: 'Custom Artwork',
+        spotlightTag3: 'Global Delivery',
+        spotlightCardCta: 'Plan Your Hamper',
+        ctaBannerHeading: 'Create a Bespoke Festive Experience',
+        ctaBannerText:
+          'Collaborate with our team to design branded hampers, curated tasting events, and memorable corporate gifting.',
+        ctaBannerButton: 'Speak with a Specialist',
+        footerCopy: 'Kinh Do Foods. All rights reserved.',
+        footerSocial: 'Follow our journey on'
+      },
+      vi: {
+        navHome: 'Trang chủ',
+        navProducts: 'Sản phẩm',
+        navContact: 'Liên hệ',
+        navCta: 'Lên kế hoạch đơn hàng',
+        heroEyebrow: 'Theo mùa & biểu tượng',
+        heroTitle: 'Khám phá bộ sưu tập bánh trung thu & tiệm bánh của chúng tôi',
+        heroDescription:
+          'Từ những chiếc bánh trung thu hạt sen thủ công đến món ngon hằng ngày, mỗi sáng tạo Kinh Đô đều được làm ra để sẻ chia. Khám phá bộ sưu tập tuyển chọn và tìm món quà hoàn hảo cho mọi dịp.',
+        heroPrimaryCta: 'Xem các bộ sưu tập',
+        heroSecondaryCta: 'Yêu cầu catalog',
+        heroCardOverline: 'Hộp quà nổi bật',
+        heroCardTitle: 'Bộ kỷ niệm 25 năm',
+        heroCardDescription:
+          'Bộ quà phiên bản giới hạn tôn vinh 25 năm tinh hoa Kinh Đô với 4 bánh trung thu thượng hạng, trà ô long và phụ kiện lưu niệm.',
+        heroCardFootnote1: 'Giao trước trong 3 ngày',
+        heroCardFootnote2: 'Tặng kèm gói quà',
+        collectionsHeading: 'Bộ sưu tập tiêu biểu',
+        collectionsDescription: 'Bộ sưu tập tinh tế kết hợp di sản, sáng tạo và nhịp điệu lễ hội Việt Nam.',
+        collectionsCard1Title: 'Bộ sưu tập bánh trung thu',
+        collectionsCard1Description:
+          'Bánh nướng truyền thống, cảm hứng tuyết lạnh và hộp quà cao cấp dành riêng cho đêm đoàn viên.',
+        collectionsCard1Tag1: 'Hạt sen & trứng muối',
+        collectionsCard1Tag2: 'Nhân custard tan chảy',
+        collectionsCard1Tag3: 'Phối trà tinh tế',
+        collectionsCard2Title: 'Niềm vui mỗi ngày',
+        collectionsCard2Description:
+          'Bánh mì mềm, bánh quy giòn và wafers đậm đà cho bữa sáng, trà chiều và mọi khoảnh khắc thường nhật.',
+        collectionsCard2Tag1: 'Bánh mì mềm',
+        collectionsCard2Tag2: 'Bánh quy',
+        collectionsCard2Tag3: 'Socola ngọt ngào',
+        collectionsCard3Title: 'Giỏ quà lễ hội',
+        collectionsCard3Description:
+          'Bộ quà thanh lịch với trà thủ công, kẹo ngon và sáng tạo giới hạn hoàn hảo để tặng nhau.',
+        collectionsCard3Tag1: 'Hộp theo mùa',
+        collectionsCard3Tag2: 'Quà tặng doanh nghiệp',
+        collectionsCard3Tag3: 'Khắc tên riêng',
+        featuredHeading: 'Sản phẩm nổi bật',
+        featuredDescription:
+          'Những phiên bản theo mùa tôn vinh tay nghề và hương vị đặc trưng của bánh trung thu Kinh Đô.',
+        featuredProduct1Title: 'Bộ đèn lồng di sản',
+        featuredProduct1Description:
+          'Hộp quà lưu niệm gồm bốn bánh nướng biểu tượng, trà lài phối kèm và hộp lấy cảm hứng từ lồng đèn lụa.',
+        featuredProduct1Price: '₫850,000',
+        featuredProduct1Cta: 'Đặt trước ngay',
+        featuredProduct2Title: 'Bánh dẻo đậu xanh mềm',
+        featuredProduct2Description:
+          'Bánh dẻo kiểu tuyết với nhân đậu xanh lá dứa và hạt dưa giòn mang hơi thở hiện đại.',
+        featuredProduct2Price: '₫120,000',
+        featuredProduct2Cta: 'Thêm vào đơn',
+        spotlightHeading: 'Bánh trung thu tỏa sáng',
+        spotlightDescription:
+          'Mỗi chiếc bánh là câu chuyện nghệ thuật — từ nguyên liệu truy xuất bền vững đến nét cọ vàng cuối cùng. Đầu bếp cân bằng truyền thống và hương vị đương đại để dư âm vượt đêm rằm.',
+        spotlightList1: 'Nhân giới hạn làm từ cacao đơn nguồn Việt Nam.',
+        spotlightList2: 'Họa tiết vẽ tay lấy cảm hứng từ phố lồng đèn Hội An.',
+        spotlightList3: 'Bao bì thông minh giữ độ tươi và giảm lãng phí.',
+        spotlightCardTitle: 'Thiết kế món quà hoàn hảo',
+        spotlightCardDescription:
+          'Chọn hộp quà mô-đun phù hợp câu chuyện thương hiệu hoặc gia đình. Thêm thiệp chúc cá nhân, ruy băng riêng và phối trà để nâng tầm trao gửi.',
+        spotlightTag1: 'Chuyên viên riêng',
+        spotlightTag2: 'Họa tiết theo yêu cầu',
+        spotlightTag3: 'Giao hàng toàn cầu',
+        spotlightCardCta: 'Lên kế hoạch hộp quà',
+        ctaBannerHeading: 'Kiến tạo trải nghiệm lễ hội riêng',
+        ctaBannerText:
+          'Đồng hành cùng đội ngũ chúng tôi để thiết kế giỏ quà thương hiệu, sự kiện thử nếm và quà tặng doanh nghiệp đáng nhớ.',
+        ctaBannerButton: 'Trao đổi với chuyên gia',
+        footerCopy: 'Kinh Do Foods. Bảo lưu mọi quyền.',
+        footerSocial: 'Theo dõi hành trình của chúng tôi trên'
+      }
+    };
+
+    const translatableElements = document.querySelectorAll('[data-i18n]');
+    const languageToggle = document.getElementById('language-toggle');
+    const LANGUAGE_STORAGE_KEY = 'kinhdoLanguage';
+    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    let currentLanguage = savedLanguage === 'en' || savedLanguage === 'vi' ? savedLanguage : 'vi';
+
+    const applyTranslations = (language) => {
+      const locale = language === 'vi' ? 'vi' : 'en';
+      document.documentElement.setAttribute('lang', locale);
+
+      translatableElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        const translation = translations[locale][key];
+
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+    };
+
+    const updateToggleLabel = (language) => {
+      if (!languageToggle) return;
+
+      if (language === 'vi') {
+        languageToggle.textContent = 'English';
+        languageToggle.setAttribute('aria-label', 'Switch to English');
+      } else {
+        languageToggle.textContent = 'Tiếng Việt';
+        languageToggle.setAttribute('aria-label', 'Switch to Vietnamese');
+      }
+    };
+
+    const setLanguage = (language) => {
+      const locale = language === 'vi' ? 'vi' : 'en';
+      currentLanguage = locale;
+      applyTranslations(locale);
+      updateToggleLabel(locale);
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, locale);
+    };
+
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        setLanguage(currentLanguage === 'en' ? 'vi' : 'en');
+      });
+    }
+
+    setLanguage(currentLanguage);
   </script>
 </body>
 </html>
