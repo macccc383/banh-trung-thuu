@@ -18,12 +18,17 @@
       </a>
       <nav aria-label="Primary">
         <ul>
-          <li><a class="active" aria-current="page" href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a class="active" aria-current="page" data-i18n="navHome" href="index.html">Home</a></li>
+          <li><a data-i18n="navProducts" href="products.html">Products</a></li>
+          <li><a data-i18n="navContact" href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a class="btn btn-primary" href="products.html">Shop Mid-Autumn</a>
+      <div class="header-actions">
+        <button class="btn btn-ghost language-toggle" type="button" id="language-toggle" aria-label="Switch to Vietnamese">
+          Tiếng Việt
+        </button>
+        <a class="btn btn-primary" data-i18n="navShop" href="products.html">Shop Mid-Autumn</a>
+      </div>
     </div>
   </header>
 
@@ -31,24 +36,24 @@
     <section class="hero" id="hero">
       <div class="container">
         <div class="hero-note hero-content">
-          <span class="hero-eyebrow">Since 1993</span>
-          <h1>Crafting Joyful Mooncake Moments</h1>
-          <p>
+          <span class="hero-eyebrow" data-i18n="heroEyebrow">Since 1993</span>
+          <h1 data-i18n="heroTitle">Crafting Joyful Mooncake Moments</h1>
+          <p data-i18n="heroDescription">
             From our bakery in Ho Chi Minh City to celebrations around the world, Kinh Do Foods
             brings together tradition, artistry, and contemporary flavours for Mid-Autumn gatherings.
           </p>
           <div class="cta-group">
-            <a class="btn btn-primary" href="products.html">Explore Collections</a>
-            <a class="btn btn-ghost" href="contact.html">Connect with Us</a>
+            <a class="btn btn-primary" data-i18n="heroPrimaryCta" href="products.html">Explore Collections</a>
+            <a class="btn btn-ghost" data-i18n="heroSecondaryCta" href="contact.html">Connect with Us</a>
           </div>
         </div>
         <div class="card hero-card" aria-hidden="true">
-          <span class="card-overline">Moonlit Signature</span>
-          <h2>Lotus Seed &amp; Golden Yolk</h2>
-          <p>A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.</p>
+          <span class="card-overline" data-i18n="heroCardOverline">Moonlit Signature</span>
+          <h2 data-i18n="heroCardTitle">Lotus Seed &amp; Golden Yolk</h2>
+          <p data-i18n="heroCardDescription">A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.</p>
           <div class="hero-card-footer">
-            <span>Limited seasonal batch</span>
-            <span>Available now</span>
+            <span data-i18n="heroCardFootnote1">Limited seasonal batch</span>
+            <span data-i18n="heroCardFootnote2">Available now</span>
           </div>
         </div>
       </div>
@@ -57,25 +62,25 @@
     <section class="photo-gallery" aria-labelledby="gallery-title">
       <div class="container">
         <div class="section-heading">
-          <h2 id="gallery-title">Moments from Our Bakery</h2>
-          <p>Glowing lanterns, freshly baked mooncakes, and festive gift sets that celebrate every Mid-Autumn gathering.</p>
+          <h2 id="gallery-title" data-i18n="galleryHeading">Moments from Our Bakery</h2>
+          <p data-i18n="galleryDescription">Glowing lanterns, freshly baked mooncakes, and festive gift sets that celebrate every Mid-Autumn gathering.</p>
         </div>
         <div class="gallery-grid">
           <figure class="gallery-card">
             <img src="home%20images/banh-kinh-do-1142696503.jpg" alt="Decorative tins of Kinh Do mooncakes arranged beside tea." />
-            <figcaption>Seasonal mooncake tins ready to delight families and friends.</figcaption>
+            <figcaption data-i18n="galleryCaption1">Seasonal mooncake tins ready to delight families and friends.</figcaption>
           </figure>
           <figure class="gallery-card">
             <img src="home%20images/Mua-banh-trung-thu-Kinh-Do-o-dau-Bang-gia-3704805917.jpg" alt="Display of assorted Kinh Do mooncakes in bright red packaging." />
-            <figcaption>Bold red packaging that captures the spirit of Mid-Autumn festivals.</figcaption>
+            <figcaption data-i18n="galleryCaption2">Bold red packaging that captures the spirit of Mid-Autumn festivals.</figcaption>
           </figure>
           <figure class="gallery-card">
             <img src="home%20images/2384-1-1606988458230392212630-3099024397.jpg" alt="A close-up of mooncakes with golden crusts and patterned tops." />
-            <figcaption>Handcrafted crusts stamped with heritage motifs and golden shine.</figcaption>
+            <figcaption data-i18n="galleryCaption3">Handcrafted crusts stamped with heritage motifs and golden shine.</figcaption>
           </figure>
           <figure class="gallery-card">
             <img src="home%20images/banh-kinh-do-1373247095.png" alt="Gift box with mooncakes, teacups, and lantern decorations." />
-            <figcaption>Curated gift boxes pairing mooncakes with tea for heartfelt gifting.</figcaption>
+            <figcaption data-i18n="galleryCaption4">Curated gift boxes pairing mooncakes with tea for heartfelt gifting.</figcaption>
           </figure>
         </div>
       </div>
@@ -84,30 +89,30 @@
     <section id="story">
       <div class="container our-story">
         <div class="section-heading">
-          <h2>Our Story</h2>
-          <p>
+          <h2 data-i18n="storyHeading">Our Story</h2>
+          <p data-i18n="storyIntro">
             What began as a family bakery has flourished into a beloved Vietnamese brand honouring community, culture,
             and the delight of sharing mooncakes beneath the full moon.
           </p>
         </div>
         <div class="story-grid">
           <article class="card story-card">
-            <h3>Handcrafted Beginnings</h3>
-            <p>
+            <h3 data-i18n="storyCard1Title">Handcrafted Beginnings</h3>
+            <p data-i18n="storyCard1Description">
               Brothers Tran and Nguyen opened the first Kinh Do bakery, experimenting with family recipes and inviting
               neighbours to taste the very first lotus seed mooncakes.
             </p>
           </article>
           <article class="card story-card">
-            <h3>Growing With Vietnam</h3>
-            <p>
+            <h3 data-i18n="storyCard2Title">Growing With Vietnam</h3>
+            <p data-i18n="storyCard2Description">
               Throughout the 2000s we expanded across the country, introducing breads, biscuits, and festive hampers
               that brightened celebrations in every province.
             </p>
           </article>
           <article class="card story-card">
-            <h3>Sharing the Glow Worldwide</h3>
-            <p>
+            <h3 data-i18n="storyCard3Title">Sharing the Glow Worldwide</h3>
+            <p data-i18n="storyCard3Description">
               Today our artisanal mooncakes travel globally, connecting Vietnamese communities with meaningful flavours
               and design-led gifting experiences.
             </p>
@@ -119,25 +124,25 @@
     <section id="sustainability">
       <div class="container sustainability">
         <div class="section-heading">
-          <h2>Savour the Future Responsibly</h2>
-          <p>Every celebration can be mindful. We champion thoughtful sourcing and packaging for the next generation.</p>
+          <h2 data-i18n="sustainabilityHeading">Savour the Future Responsibly</h2>
+          <p data-i18n="sustainabilityIntro">Every celebration can be mindful. We champion thoughtful sourcing and packaging for the next generation.</p>
         </div>
         <div class="sustainability-grid">
           <article class="sustainability-card">
-            <h4>Local Ingredients</h4>
-            <p>We partner with Vietnamese farmers to source lotus seeds, tropical fruits, and fragrant teas harvested with care.</p>
+            <h4 data-i18n="sustainabilityCard1Title">Local Ingredients</h4>
+            <p data-i18n="sustainabilityCard1Description">We partner with Vietnamese farmers to source lotus seeds, tropical fruits, and fragrant teas harvested with care.</p>
           </article>
           <article class="sustainability-card">
-            <h4>Eco Packaging</h4>
-            <p>Our boxes are crafted from recycled fibres, soy-based inks, and modular inserts that reduce single-use materials.</p>
+            <h4 data-i18n="sustainabilityCard2Title">Eco Packaging</h4>
+            <p data-i18n="sustainabilityCard2Description">Our boxes are crafted from recycled fibres, soy-based inks, and modular inserts that reduce single-use materials.</p>
           </article>
           <article class="sustainability-card">
-            <h4>Community Programs</h4>
-            <p>Festive giving drives support education and nutrition initiatives, spreading joy beyond the holiday table.</p>
+            <h4 data-i18n="sustainabilityCard3Title">Community Programs</h4>
+            <p data-i18n="sustainabilityCard3Description">Festive giving drives support education and nutrition initiatives, spreading joy beyond the holiday table.</p>
           </article>
           <article class="sustainability-card">
-            <h4>Zero Waste Bakeries</h4>
-            <p>We optimise production with precise batching, redistributing surplus to local partners and charities.</p>
+            <h4 data-i18n="sustainabilityCard4Title">Zero Waste Bakeries</h4>
+            <p data-i18n="sustainabilityCard4Description">We optimise production with precise batching, redistributing surplus to local partners and charities.</p>
           </article>
         </div>
       </div>
@@ -145,22 +150,182 @@
 
     <section>
       <div class="container cta-banner">
-        <h3>Design Your Next Celebration with Kinh Do</h3>
-        <p>Collaborate with our culinary artists to compose bespoke mooncake experiences and seasonal hampers.</p>
-        <a class="btn btn-ghost" href="contact.html">Start a Conversation</a>
+        <h3 data-i18n="ctaBannerHeading">Design Your Next Celebration with Kinh Do</h3>
+        <p data-i18n="ctaBannerText">Collaborate with our culinary artists to compose bespoke mooncake experiences and seasonal hampers.</p>
+        <a class="btn btn-ghost" data-i18n="ctaBannerButton" href="contact.html">Start a Conversation</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <small>&copy; <span id="year"></span> Kinh Do Foods. All rights reserved.</small>
-      <small>Follow our journey on <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+      <small>&copy; <span id="year"></span> <span data-i18n="footerCopy">Kinh Do Foods. All rights reserved.</span></small>
+      <small><span data-i18n="footerSocial">Follow our journey on</span> <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const translations = {
+      en: {
+        navHome: 'Home',
+        navProducts: 'Products',
+        navContact: 'Contact',
+        navShop: 'Shop Mid-Autumn',
+        heroEyebrow: 'Since 1993',
+        heroTitle: 'Crafting Joyful Mooncake Moments',
+        heroDescription:
+          'From our bakery in Ho Chi Minh City to celebrations around the world, Kinh Do Foods brings together tradition, artistry, and contemporary flavours for Mid-Autumn gatherings.',
+        heroPrimaryCta: 'Explore Collections',
+        heroSecondaryCta: 'Connect with Us',
+        heroCardOverline: 'Moonlit Signature',
+        heroCardTitle: 'Lotus Seed & Golden Yolk',
+        heroCardDescription:
+          'A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.',
+        heroCardFootnote1: 'Limited seasonal batch',
+        heroCardFootnote2: 'Available now',
+        galleryHeading: 'Moments from Our Bakery',
+        galleryDescription:
+          'Glowing lanterns, freshly baked mooncakes, and festive gift sets that celebrate every Mid-Autumn gathering.',
+        galleryCaption1: 'Seasonal mooncake tins ready to delight families and friends.',
+        galleryCaption2: 'Bold red packaging that captures the spirit of Mid-Autumn festivals.',
+        galleryCaption3: 'Handcrafted crusts stamped with heritage motifs and golden shine.',
+        galleryCaption4: 'Curated gift boxes pairing mooncakes with tea for heartfelt gifting.',
+        storyHeading: 'Our Story',
+        storyIntro:
+          'What began as a family bakery has flourished into a beloved Vietnamese brand honouring community, culture, and the delight of sharing mooncakes beneath the full moon.',
+        storyCard1Title: 'Handcrafted Beginnings',
+        storyCard1Description:
+          'Brothers Tran and Nguyen opened the first Kinh Do bakery, experimenting with family recipes and inviting neighbours to taste the very first lotus seed mooncakes.',
+        storyCard2Title: 'Growing With Vietnam',
+        storyCard2Description:
+          'Throughout the 2000s we expanded across the country, introducing breads, biscuits, and festive hampers that brightened celebrations in every province.',
+        storyCard3Title: 'Sharing the Glow Worldwide',
+        storyCard3Description:
+          'Today our artisanal mooncakes travel globally, connecting Vietnamese communities with meaningful flavours and design-led gifting experiences.',
+        sustainabilityHeading: 'Savour the Future Responsibly',
+        sustainabilityIntro:
+          'Every celebration can be mindful. We champion thoughtful sourcing and packaging for the next generation.',
+        sustainabilityCard1Title: 'Local Ingredients',
+        sustainabilityCard1Description:
+          'We partner with Vietnamese farmers to source lotus seeds, tropical fruits, and fragrant teas harvested with care.',
+        sustainabilityCard2Title: 'Eco Packaging',
+        sustainabilityCard2Description:
+          'Our boxes are crafted from recycled fibres, soy-based inks, and modular inserts that reduce single-use materials.',
+        sustainabilityCard3Title: 'Community Programs',
+        sustainabilityCard3Description:
+          'Festive giving drives support education and nutrition initiatives, spreading joy beyond the holiday table.',
+        sustainabilityCard4Title: 'Zero Waste Bakeries',
+        sustainabilityCard4Description:
+          'We optimise production with precise batching, redistributing surplus to local partners and charities.',
+        ctaBannerHeading: 'Design Your Next Celebration with Kinh Do',
+        ctaBannerText:
+          'Collaborate with our culinary artists to compose bespoke mooncake experiences and seasonal hampers.',
+        ctaBannerButton: 'Start a Conversation',
+        footerCopy: 'Kinh Do Foods. All rights reserved.',
+        footerSocial: 'Follow our journey on'
+      },
+      vi: {
+        navHome: 'Trang chủ',
+        navProducts: 'Sản phẩm',
+        navContact: 'Liên hệ',
+        navShop: 'Mua sắm mùa Trung Thu',
+        heroEyebrow: 'Từ năm 1993',
+        heroTitle: 'Kiến tạo khoảnh khắc bánh trung thu hạnh phúc',
+        heroDescription:
+          'Từ tiệm bánh của chúng tôi tại TP. Hồ Chí Minh đến những buổi sum họp khắp thế giới, Kinh Đô kết nối truyền thống, nghệ thuật và hương vị đương đại cho mùa Trung Thu.',
+        heroPrimaryCta: 'Khám phá bộ sưu tập',
+        heroSecondaryCta: 'Kết nối với chúng tôi',
+        heroCardOverline: 'Dấu ấn đêm trăng',
+        heroCardTitle: 'Hạt sen & trứng muối vàng',
+        heroCardDescription:
+          'Sự hòa quyện của nhân sen mịn màng và trứng muối đậm đà dành cho những buổi đoàn viên gia đình.',
+        heroCardFootnote1: 'Sản xuất theo mùa giới hạn',
+        heroCardFootnote2: 'Đang mở bán',
+        galleryHeading: 'Khoảnh khắc từ tiệm bánh của chúng tôi',
+        galleryDescription:
+          'Đèn lồng rực rỡ, bánh trung thu mới ra lò và những hộp quà lễ hội tôn vinh mọi mùa đoàn viên.',
+        galleryCaption1: 'Hộp bánh trung thu theo mùa sẵn sàng trao tặng người thân, bạn bè.',
+        galleryCaption2: 'Bao bì đỏ rực thể hiện trọn vẹn tinh thần lễ hội Trung Thu.',
+        galleryCaption3: 'Vỏ bánh thủ công in hoa văn truyền thống óng ánh vàng.',
+        galleryCaption4: 'Hộp quà tinh tế kết hợp bánh trung thu và trà cho món quà đầy yêu thương.',
+        storyHeading: 'Câu chuyện của chúng tôi',
+        storyIntro:
+          'Khởi đầu là tiệm bánh gia đình, chúng tôi đã trở thành thương hiệu Việt Nam được yêu mến, tôn vinh cộng đồng, văn hóa và niềm vui sum vầy dưới trăng rằm.',
+        storyCard1Title: 'Khởi đầu thủ công',
+        storyCard1Description:
+          'Hai anh em Trần và Nguyễn mở tiệm Kinh Đô đầu tiên, thử nghiệm công thức gia truyền và mời hàng xóm thưởng thức những chiếc bánh sen đầu tiên.',
+        storyCard2Title: 'Lớn lên cùng Việt Nam',
+        storyCard2Description:
+          'Trong suốt những năm 2000 chúng tôi phủ sóng khắp cả nước với bánh mì, bánh quy và giỏ quà lễ hội làm sáng rực mọi mùa sum họp.',
+        storyCard3Title: 'Lan tỏa hương vị ra thế giới',
+        storyCard3Description:
+          'Ngày nay bánh trung thu thủ công của chúng tôi đến với cộng đồng Việt toàn cầu, kết nối bằng hương vị ý nghĩa và trải nghiệm quà tặng tinh tế.',
+        sustainabilityHeading: 'Hưởng trọn tương lai bền vững',
+        sustainabilityIntro:
+          'Mỗi buổi lễ đều có thể trọn vẹn và ý thức. Chúng tôi đề cao nguồn nguyên liệu và bao bì thân thiện cho thế hệ mai sau.',
+        sustainabilityCard1Title: 'Nguyên liệu bản địa',
+        sustainabilityCard1Description:
+          'Chúng tôi hợp tác cùng nông hộ Việt Nam để thu mua hạt sen, trái cây nhiệt đới và trà thơm được chăm sóc kỹ lưỡng.',
+        sustainabilityCard2Title: 'Bao bì xanh',
+        sustainabilityCard2Description:
+          'Hộp bánh làm từ sợi tái chế, mực in đậu nành và khay mô-đun giúp giảm vật liệu dùng một lần.',
+        sustainabilityCard3Title: 'Chương trình cộng đồng',
+        sustainabilityCard3Description:
+          'Các hoạt động trao quà mùa lễ hỗ trợ giáo dục và dinh dưỡng, lan tỏa niềm vui vượt khỏi bàn tiệc.',
+        sustainabilityCard4Title: 'Nhà bánh không rác thải',
+        sustainabilityCard4Description:
+          'Quy trình chuẩn xác giúp chúng tôi tận dụng nguyên liệu, trao tặng phần dư cho đối tác và tổ chức thiện nguyện địa phương.',
+        ctaBannerHeading: 'Cùng Kinh Đô tạo nên lễ hội tiếp theo',
+        ctaBannerText:
+          'Đồng hành với nghệ nhân ẩm thực để kiến tạo trải nghiệm bánh trung thu và quà tặng theo mong muốn của bạn.',
+        ctaBannerButton: 'Bắt đầu trò chuyện',
+        footerCopy: 'Kinh Do Foods. Bảo lưu mọi quyền.',
+        footerSocial: 'Theo dõi hành trình của chúng tôi trên'
+      }
+    };
+
+    const translatableElements = document.querySelectorAll('[data-i18n]');
+    const languageToggle = document.getElementById('language-toggle');
+    let currentLanguage = 'en';
+
+    const applyTranslations = (language) => {
+      const locale = language === 'vi' ? 'vi' : 'en';
+      document.documentElement.setAttribute('lang', locale);
+
+      translatableElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        const translation = translations[locale][key];
+
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+    };
+
+    const updateToggleLabel = (language) => {
+      if (!languageToggle) return;
+
+      if (language === 'vi') {
+        languageToggle.textContent = 'English';
+        languageToggle.setAttribute('aria-label', 'Switch to English');
+      } else {
+        languageToggle.textContent = 'Tiếng Việt';
+        languageToggle.setAttribute('aria-label', 'Switch to Vietnamese');
+      }
+    };
+
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        currentLanguage = currentLanguage === 'en' ? 'vi' : 'en';
+        applyTranslations(currentLanguage);
+        updateToggleLabel(currentLanguage);
+      });
+    }
+
+    applyTranslations(currentLanguage);
+    updateToggleLabel(currentLanguage);
   </script>
 </body>
 </html>
