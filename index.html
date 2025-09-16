@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinh Do Foods | Crafting Joyful Moments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-primary: #d71f26;
+      --brand-secondary: #f7b500;
+      --brand-dark: #2a1a1f;
+      --text-primary: #312529;
+      --text-muted: #5f4d51;
+      --surface: rgba(255, 255, 255, 0.72);
+      --shadow-soft: 0 24px 48px -32px rgba(50, 24, 28, 0.35);
+      --rounded-large: 32px;
+      --rounded-medium: 20px;
+      color-scheme: light;
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(140% 140% at 10% 10%, #fff4f0 0%, #ffe7e0 42%, #fff 100%);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90vw);
+      margin-inline: auto;
+    }
+
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 247, 244, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(215, 31, 38, 0.1);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 600;
+      color: var(--brand-dark);
+      letter-spacing: 0.04em;
+    }
+
+    .brand img {
+      width: clamp(42px, 5vw, 62px);
+      aspect-ratio: 1 / 1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 2.5rem);
+      padding: 0;
+      margin: 0;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--brand-primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: none;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -18px rgba(215, 31, 38, 0.7);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f74436 0%, var(--brand-primary) 100%);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.65);
+      border-color: rgba(215, 31, 38, 0.25);
+      color: var(--brand-primary);
+    }
+
+    main section {
+      padding: clamp(4rem, 8vw, 6.5rem) 0;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% -20% 0 auto;
+      width: clamp(300px, 40vw, 520px);
+      height: clamp(300px, 45vw, 560px);
+      background: radial-gradient(circle at 50% 50%, rgba(215, 31, 38, 0.15) 0%, rgba(215, 31, 38, 0) 65%);
+      transform: rotate(-12deg);
+      z-index: -1;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      margin: 0.75rem 0 1.5rem;
+      color: var(--brand-dark);
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      margin-bottom: 1.75rem;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-note {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .hero-note-card {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: var(--rounded-medium);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-note-card strong {
+      display: block;
+      font-size: 1.05rem;
+      color: var(--brand-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-logo {
+      position: relative;
+      display: inline-flex;
+      padding: 1.5rem;
+      border-radius: var(--rounded-medium);
+      background: linear-gradient(140deg, rgba(247, 181, 0, 0.18) 0%, rgba(255, 255, 255, 0.8) 55%, rgba(215, 31, 38, 0.15) 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), var(--shadow-soft);
+      width: fit-content;
+    }
+
+    .hero-logo img {
+      width: clamp(96px, 18vw, 150px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.78);
+      padding: 1.25rem 1.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-card span {
+      display: block;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      color: var(--brand-dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading p {
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: var(--rounded-medium);
+      padding: 2rem;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--brand-dark);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 0.4rem 0.85rem;
+      background: rgba(215, 31, 38, 0.08);
+      color: var(--brand-primary);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .spotlight {
+      background: linear-gradient(140deg, rgba(215, 31, 38, 0.08) 0%, rgba(255, 247, 244, 0.95) 65%, rgba(247, 181, 0, 0.12) 100%);
+      border-radius: var(--rounded-large);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .spotlight h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      margin: 0 0 1rem;
+      color: var(--brand-dark);
+    }
+
+    .spotlight p {
+      margin: 0 0 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .spotlight-list {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .spotlight-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      font-weight: 500;
+      color: var(--brand-dark);
+    }
+
+    .spotlight-list span {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(215, 31, 38, 0.12);
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    .heritage-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(215, 31, 38, 0.3) 0%, rgba(215, 31, 38, 0) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 1.25rem 1.5rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(215, 31, 38, 0.08);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.1rem;
+      top: 1.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 4px rgba(215, 31, 38, 0.15);
+    }
+
+    .timeline-item h4 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      color: var(--brand-dark);
+      font-size: 1.2rem;
+    }
+
+    .timeline-item span {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--brand-primary);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item p {
+      margin-top: 0.75rem;
+      margin-bottom: 0;
+      color: var(--text-muted);
+    }
+
+    .heritage-card {
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: var(--rounded-medium);
+      padding: 2rem;
+      display: grid;
+      gap: 1rem;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .heritage-card h3 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      color: var(--brand-dark);
+    }
+
+    .heritage-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .sustainability {
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: var(--rounded-large);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: clamp(2rem, 5vw, 3rem);
+    }
+
+    .sustainability-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .sustainability-card {
+      background: rgba(215, 31, 38, 0.05);
+      padding: 1.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      box-shadow: 0 18px 32px -24px rgba(50, 24, 28, 0.28);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .sustainability-card h4 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--brand-dark);
+    }
+
+    .sustainability-card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .cta-banner {
+      text-align: center;
+      padding: clamp(2.5rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, rgba(215, 31, 38, 0.85) 0%, rgba(215, 31, 38, 0.72) 65%, rgba(247, 181, 0, 0.9) 100%);
+      border-radius: var(--rounded-large);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .cta-banner h3 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .cta-banner p {
+      margin: 0 auto;
+      max-width: 640px;
+      font-size: 1.05rem;
+    }
+
+    .contact {
+      display: grid;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: var(--rounded-medium);
+      padding: 1.5rem;
+      border: 1px solid rgba(215, 31, 38, 0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    footer {
+      padding: 3rem 0 2rem;
+      background: rgba(50, 24, 28, 0.9);
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    @media (max-width: 720px) {
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.85rem 1.25rem;
+      }
+
+      .nav-bar {
+        flex-wrap: wrap;
+      }
+
+      header.site-header {
+        position: sticky;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .spotlight {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+
+      .heritage-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav-bar {
+        padding: 1.2rem 0;
+      }
+
+      .hero .container {
+        align-items: stretch;
+      }
+
+      .hero-note {
+        gap: 1.5rem;
+      }
+
+      .hero-stats {
+        align-self: end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="#top">
+        <img src="logo-kinh-do-635x516-152344819.png" alt="Kinh Do crown logo" />
+        <span>Kinh Do Foods</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#collections">Collections</a></li>
+          <li><a href="#mooncakes">Mooncakes</a></li>
+          <li><a href="#heritage">Heritage</a></li>
+          <li><a href="#sustainability">Sustainability</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-note">
+          <span class="hero-eyebrow">Since 1993</span>
+          <h1>Crafting Joyful Moments for Every Moonrise</h1>
+          <p>We celebrate the vibrant spirit of Vietnam with artisanal mooncakes, beloved snacks, and festive delicacies that bring families closer together all year round.</p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#collections">Explore Collections</a>
+            <a class="btn btn-ghost" href="#contact">Partner With Us</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span>30+</span>
+              <small>Years of culinary craftsmanship</small>
+            </div>
+            <div class="stat-card">
+              <span>40+</span>
+              <small>Signature flavour pairings</small>
+            </div>
+            <div class="stat-card">
+              <span>65</span>
+              <small>Countries enjoy Kinh Do treats</small>
+            </div>
+          </div>
+        </div>
+        <div class="hero-note">
+          <div class="hero-logo">
+            <img src="logo-kinh-do-635x516-152344819.png" alt="Kinh Do logo seal" />
+          </div>
+          <div class="hero-note-card">
+            <strong>Mid-Autumn Signatures</strong>
+            Crafted with the finest lotus seeds, salted egg yolk, and tropical fruits, our mooncakes honour traditions while embracing modern palates.
+          </div>
+          <div class="hero-note-card">
+            <strong>From Sunrise to Celebration</strong>
+            From convenient breakfast buns to celebratory gift sets, we craft flavours that travel seamlessly from the bakery to every festive table.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collections">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Signature Collections</h2>
+          <p>A curated range of delights shaped by heritage, innovation, and the rhythm of Vietnam’s festivities.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Mooncake Gallery</h3>
+            <p>Traditional baked mooncakes, snow-skin inspirations, and premium gift sets designed for the Mid-Autumn reunion.</p>
+            <ul class="tags">
+              <li>Lotus &amp; Salted Egg</li>
+              <li>Custard Lava</li>
+              <li>Tea Pairings</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Everyday Pleasures</h3>
+            <p>Pillowy breads, crispy biscuits, and indulgent wafers crafted for breakfast, tea time, and everything in between.</p>
+            <ul class="tags">
+              <li>Soft Buns</li>
+              <li>Crackers</li>
+              <li>Chocolate Treats</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Celebration Hampers</h3>
+            <p>Elegant assortments featuring artisanal teas, confections, and limited-edition creations perfect for gifting.</p>
+            <ul class="tags">
+              <li>Seasonal Boxes</li>
+              <li>Corporate Gifts</li>
+              <li>Custom Engraving</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="mooncakes">
+      <div class="container">
+        <div class="spotlight">
+          <div>
+            <h3>Mooncakes Illuminated</h3>
+            <p>Every mooncake is a story of artistry — from responsibly sourced ingredients to the final brush of gold. Our chefs balance tradition with contemporary flavours to create experiences that linger beyond the festival night.</p>
+            <ul class="spotlight-list">
+              <li><span>01</span>Limited reserve fillings with single-origin Vietnamese cacao.</li>
+              <li><span>02</span>Hand-painted motifs inspired by the lantern-lit streets of Hội An.</li>
+              <li><span>03</span>Smart packaging engineered to stay fresh while reducing waste.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Designing the Perfect Gift</h3>
+            <p>Choose from modular gift boxes that adapt to your brand or family story. Add personalised greetings, bespoke ribbons, and curated tea pairings to enrich every exchange of mooncakes.</p>
+            <ul class="tags">
+              <li>Personal Concierge</li>
+              <li>Custom Artwork</li>
+              <li>Global Delivery</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact">Plan Your Hamper</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="heritage">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Heritage Meets Innovation</h2>
+          <p>Our legacy is rooted in family recipes, but our vision is set on the future of flavour, sustainability, and community.</p>
+        </div>
+        <div class="heritage-grid">
+          <div class="timeline" aria-label="Milestones timeline">
+            <article class="timeline-item">
+              <h4>Founding Our Bakery</h4>
+              <span>1993</span>
+              <p>Two brothers began handcrafting mooncakes in Ho Chi Minh City, igniting a passion for delighting families during Mid-Autumn.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>Expanding the Kinh Do Family</h4>
+              <span>2000s</span>
+              <p>We introduced breads, biscuits, and confections that quickly became household staples across Vietnam and beyond.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>Global Recognition</h4>
+              <span>2015</span>
+              <p>Kinh Do mooncakes were celebrated internationally, highlighting Vietnamese craftsmanship on the world stage.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>Tomorrow&apos;s Taste</h4>
+              <span>Today</span>
+              <p>We innovate with plant-forward recipes, mindful packaging, and digital experiences that bring communities closer.</p>
+            </article>
+          </div>
+          <div class="heritage-card">
+            <h3>What Guides Our Craft</h3>
+            <ul>
+              <li>Respect for heritage techniques passed down through generations.</li>
+              <li>Curating premium ingredients from trusted Vietnamese growers.</li>
+              <li>Collaborating with chefs and designers to shape new festive rituals.</li>
+              <li>Supporting local communities through seasonal celebrations and giving programs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sustainability">
+      <div class="container">
+        <div class="sustainability">
+          <div class="section-heading">
+            <h2>Savour the Future Responsibly</h2>
+            <p>We champion mindful sourcing and thoughtful design, ensuring every bite honours both tradition and tomorrow.</p>
+          </div>
+          <div class="sustainability-grid">
+            <article class="sustainability-card">
+              <h4>Local Ingredients</h4>
+              <p>We partner with Vietnamese farmers to source lotus seeds, tropical fruits, and fragrant teas harvested with care.</p>
+            </article>
+            <article class="sustainability-card">
+              <h4>Eco Packaging</h4>
+              <p>Our boxes are crafted from recycled fibres, soy-based inks, and modular inserts that reduce single-use materials.</p>
+            </article>
+            <article class="sustainability-card">
+              <h4>Community Programs</h4>
+              <p>Festive giving drives support education and nutrition initiatives, spreading joy beyond the holiday table.</p>
+            </article>
+            <article class="sustainability-card">
+              <h4>Zero Waste Bakeries</h4>
+              <p>We optimise production with precise batching, redistributing surplus to local partners and charities.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-banner">
+          <h3>Design Your Next Celebration with Kinh Do</h3>
+          <p>Collaborate with our culinary artists to compose bespoke mooncake experiences, seasonal hampers, and branded events that shine as brightly as the full moon.</p>
+          <a class="btn btn-ghost" href="#contact">Start a Conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div class="section-heading">
+            <h2>Connect With Our Team</h2>
+            <p>Whether you are planning a Mid-Autumn soirée, corporate gifting program, or new product collaboration, we are ready to help.</p>
+          </div>
+          <div class="contact-details">
+            <div class="contact-card">
+              <h4>Visit Our Flagship</h4>
+              <p>141 Nguyen Du, District 1<br />Ho Chi Minh City, Vietnam</p>
+            </div>
+            <div class="contact-card">
+              <h4>Say Hello</h4>
+              <p><a href="mailto:hello@kinhdo.com">hello@kinhdo.com</a><br />+84 (0)28 3949 9888</p>
+            </div>
+            <div class="contact-card">
+              <h4>Business Partnerships</h4>
+              <p><a href="mailto:partners@kinhdo.com">partners@kinhdo.com</a><br />Tailored mooncake &amp; gifting programs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>&copy; <span id="year"></span> Kinh Do Foods. All rights reserved.</small>
+      <small>Follow our journey on <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
