@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinh Do Foods | Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html">
+        <img src="logo-kinh-do-635x516-152344819.png" alt="Kinh Do Foods logo" />
+        <span>Kinh Do Foods</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" aria-current="page" href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary" href="contact.html">Plan a Custom Order</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero product-hero">
+      <div class="container">
+        <div class="hero-note hero-content">
+          <span class="hero-eyebrow">Seasonal &amp; Signature</span>
+          <h1>Discover Our Mooncake &amp; Bakery Collections</h1>
+          <p>
+            From handcrafted lotus seed mooncakes to everyday delights, every Kinh Do creation is made to share.
+            Explore our curated collections and find the perfect treats for every celebration.
+          </p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#collections">Browse Collections</a>
+            <a class="btn btn-ghost" href="contact.html">Request a Catalogue</a>
+          </div>
+        </div>
+        <div class="card hero-card" aria-hidden="true">
+          <span class="card-overline">Featured Hamper</span>
+          <h2>Moonlit Reunion Set</h2>
+          <p>Four artisanal mooncakes, jasmine tea pairing, and personalised greeting card nestled in lacquered packaging.</p>
+          <div class="hero-card-footer">
+            <span>Pre-order ships in 3 days</span>
+            <span>Complimentary gift wrap</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collections">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Signature Collections</h2>
+          <p>A curated range of delights shaped by heritage, innovation, and the rhythm of Vietnam’s festivities.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Mooncake Gallery</h3>
+            <p>Traditional baked mooncakes, snow-skin inspirations, and premium gift sets designed for the Mid-Autumn reunion.</p>
+            <ul class="tags">
+              <li>Lotus &amp; Salted Egg</li>
+              <li>Custard Lava</li>
+              <li>Tea Pairings</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Everyday Pleasures</h3>
+            <p>Pillowy breads, crispy biscuits, and indulgent wafers crafted for breakfast, tea time, and everything in between.</p>
+            <ul class="tags">
+              <li>Soft Buns</li>
+              <li>Crackers</li>
+              <li>Chocolate Treats</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Celebration Hampers</h3>
+            <p>Elegant assortments featuring artisanal teas, confections, and limited-edition creations perfect for gifting.</p>
+            <ul class="tags">
+              <li>Seasonal Boxes</li>
+              <li>Corporate Gifts</li>
+              <li>Custom Engraving</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="mooncakes">
+      <div class="container">
+        <div class="spotlight">
+          <div>
+            <h3>Mooncakes Illuminated</h3>
+            <p>Every mooncake is a story of artistry — from responsibly sourced ingredients to the final brush of gold. Our chefs balance tradition with contemporary flavours to create experiences that linger beyond the festival night.</p>
+            <ul class="spotlight-list">
+              <li><span>01</span>Limited reserve fillings with single-origin Vietnamese cacao.</li>
+              <li><span>02</span>Hand-painted motifs inspired by the lantern-lit streets of Hội An.</li>
+              <li><span>03</span>Smart packaging engineered to stay fresh while reducing waste.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Designing the Perfect Gift</h3>
+            <p>Choose from modular gift boxes that adapt to your brand or family story. Add personalised greetings, bespoke ribbons, and curated tea pairings to enrich every exchange of mooncakes.</p>
+            <ul class="tags">
+              <li>Personal Concierge</li>
+              <li>Custom Artwork</li>
+              <li>Global Delivery</li>
+            </ul>
+            <a class="btn btn-primary" href="contact.html">Plan Your Hamper</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container cta-banner">
+        <h3>Create a Bespoke Festive Experience</h3>
+        <p>Collaborate with our team to design branded hampers, curated tasting events, and memorable corporate gifting.</p>
+        <a class="btn btn-ghost" href="contact.html">Speak with a Specialist</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>&copy; <span id="year"></span> Kinh Do Foods. All rights reserved.</small>
+      <small>Follow our journey on <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
