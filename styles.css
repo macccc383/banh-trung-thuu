@@ -365,7 +365,7 @@
     .gallery-card img {
       width: 100%;
       border-radius: 18px;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 2;
       object-fit: cover;
     }
 
@@ -779,7 +779,7 @@
       }
 
       .gallery-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .product-grid {
