@@ -940,6 +940,75 @@
       }
     };
 
+    const siteHeader = document.querySelector('.site-header');
+    const mobileHeaderQuery = window.matchMedia('(max-width: 720px)');
+    let lastKnownScrollY = window.scrollY;
+    let headerHidden = false;
+
+    const showSiteHeader = () => {
+      if (!siteHeader || !headerHidden) return;
+      siteHeader.classList.remove('is-hidden');
+      headerHidden = false;
+    };
+
+    const hideSiteHeader = () => {
+      if (!siteHeader || headerHidden) return;
+      siteHeader.classList.add('is-hidden');
+      headerHidden = true;
+    };
+
+    const evaluateHeaderVisibility = () => {
+      if (!siteHeader) return;
+
+      if (!mobileHeaderQuery.matches) {
+        showSiteHeader();
+        lastKnownScrollY = window.scrollY;
+        return;
+      }
+
+      const currentScrollY = Math.max(window.scrollY, 0);
+      const isScrollingDown = currentScrollY > lastKnownScrollY;
+      const shouldHide = isScrollingDown && currentScrollY > 80;
+
+      if (shouldHide) {
+        hideSiteHeader();
+      } else {
+        showSiteHeader();
+      }
+
+      lastKnownScrollY = currentScrollY;
+    };
+
+    const resetHeaderVisibility = () => {
+      lastKnownScrollY = window.scrollY;
+      if (!siteHeader) return;
+      siteHeader.classList.remove('is-hidden');
+      headerHidden = false;
+    };
+
+    if (siteHeader) {
+      window.addEventListener('scroll', evaluateHeaderVisibility, { passive: true });
+      window.addEventListener('orientationchange', () => {
+        resetHeaderVisibility();
+        evaluateHeaderVisibility();
+      });
+
+      const handleMobileQueryChange = () => {
+        resetHeaderVisibility();
+        if (mobileHeaderQuery.matches) {
+          evaluateHeaderVisibility();
+        }
+      };
+
+      if (typeof mobileHeaderQuery.addEventListener === 'function') {
+        mobileHeaderQuery.addEventListener('change', handleMobileQueryChange);
+      } else if (typeof mobileHeaderQuery.addListener === 'function') {
+        mobileHeaderQuery.addListener(handleMobileQueryChange);
+      }
+
+      evaluateHeaderVisibility();
+    }
+
     const setLanguage = (language) => {
       const locale = language === 'vi' ? 'vi' : 'en';
       currentLanguage = locale;
