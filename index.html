@@ -9,7 +9,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="age-gate-open">
+  <div class="age-gate-backdrop" id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+    <div class="age-gate-modal">
+      <button type="button" class="age-gate-close" id="age-gate-close" aria-label="Đóng cửa sổ xác minh tuổi">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 id="age-gate-title" data-i18n="ageGateTitle">Xác nhận độ tuổi</h2>
+      <p class="age-gate-description" data-i18n="ageGateDescription">Chọn năm sinh của bạn để tiếp tục vào Kinh Đô Foods.</p>
+      <div class="age-picker" role="group">
+        <div
+          class="age-picker-wheel"
+          id="age-picker"
+          role="listbox"
+          aria-label="Chọn năm sinh của bạn"
+          tabindex="0"
+        >
+          <ul class="age-picker-options" id="age-picker-list"></ul>
+        </div>
+        <div class="age-picker-highlight" aria-hidden="true"></div>
+      </div>
+      <p class="age-gate-disclaimer">
+        <em>*This data will not be stored anywhere.</em><br />
+        <em>*Dữ liệu này sẽ không được lưu trữ ở bất kỳ đâu.</em>
+      </p>
+      <p class="age-gate-footnote" id="age-gate-footnote" aria-live="polite"></p>
+      <button class="btn btn-primary age-gate-confirm" type="button" id="age-gate-confirm" data-i18n="ageGateConfirm">
+        Vào trang web
+      </button>
+    </div>
+  </div>
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="index.html">
@@ -230,7 +259,10 @@
           'Collaborate with our culinary artists to compose bespoke mooncake experiences and seasonal hampers.',
         ctaBannerButton: 'Start a Conversation',
         footerCopy: 'Kinh Do Foods. All rights reserved.',
-        footerSocial: 'Follow our journey on'
+        footerSocial: 'Follow our journey on',
+        ageGateTitle: 'Confirm Your Age',
+        ageGateDescription: 'Select your birth year to continue to Kinh Do Foods.',
+        ageGateConfirm: 'Enter Website'
       },
       vi: {
         navHome: 'Trang chủ',
@@ -288,12 +320,41 @@
           'Đồng hành với nghệ nhân ẩm thực để kiến tạo trải nghiệm bánh trung thu và quà tặng theo mong muốn của bạn.',
         ctaBannerButton: 'Bắt đầu trò chuyện',
         footerCopy: 'Kinh Do Foods. Bảo lưu mọi quyền.',
-        footerSocial: 'Theo dõi hành trình của chúng tôi trên'
+        footerSocial: 'Theo dõi hành trình của chúng tôi trên',
+        ageGateTitle: 'Xác nhận độ tuổi',
+        ageGateDescription: 'Chọn năm sinh của bạn để tiếp tục vào Kinh Đô Foods.',
+        ageGateConfirm: 'Vào trang web'
       }
     };
 
+    const AGE_GATE_MESSAGES = {
+      error: {
+        en: 'Please select your birth year to continue.',
+        vi: 'Vui lòng chọn năm sinh để tiếp tục.'
+      }
+    };
+    const AGE_GATE_STORAGE_KEY = 'kinhdoAgeGateStatus';
+    const AGE_GATE_BIRTH_YEAR_KEY = 'kinhdoBirthYear';
+    const AGE_GATE_YEAR_START = 1945;
+    const AGE_GATE_YEAR_END = 2025;
+    const AGE_GATE_FILLER_COUNT = 2;
+
     const translatableElements = document.querySelectorAll('[data-i18n]');
     const languageToggle = document.getElementById('language-toggle');
+    const ageGate = document.getElementById('age-gate');
+    const agePicker = document.getElementById('age-picker');
+    const agePickerList = document.getElementById('age-picker-list');
+    const ageGateCloseButton = document.getElementById('age-gate-close');
+    const ageGateConfirmButton = document.getElementById('age-gate-confirm');
+    const ageGateFootnote = document.getElementById('age-gate-footnote');
+
+    let agePickerOptions = [];
+    let agePickerOptionHeight = 0;
+    let activeAgeOption = null;
+    let selectedBirthYear = null;
+    let ageGateInitialized = false;
+    let agePickerScrollTimeout;
+
     const LANGUAGE_STORAGE_KEY = 'kinhdoLanguage';
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     let currentLanguage = savedLanguage === 'en' || savedLanguage === 'vi' ? savedLanguage : 'vi';
@@ -324,11 +385,419 @@
       }
     };
 
+    const getAgeGateMessage = (key, locale) => AGE_GATE_MESSAGES[key]?.[locale] ?? '';
+
+    const setAgeGateMessage = (key) => {
+      if (!ageGateFootnote) return;
+
+      if (!key) {
+        ageGateFootnote.textContent = '';
+        delete ageGateFootnote.dataset.messageKey;
+        return;
+      }
+
+      const locale = currentLanguage === 'vi' ? 'vi' : 'en';
+      const message = getAgeGateMessage(key, locale);
+
+      if (message) {
+        ageGateFootnote.textContent = message;
+        ageGateFootnote.dataset.messageKey = key;
+      } else {
+        ageGateFootnote.textContent = '';
+        delete ageGateFootnote.dataset.messageKey;
+      }
+    };
+
+    const measureOptionHeight = () => {
+      if (!agePickerList) return;
+      const sample = agePickerList.querySelector('.age-picker-option:not(.age-picker-spacer)');
+      if (sample) {
+        agePickerOptionHeight = sample.getBoundingClientRect().height;
+      }
+    };
+
+    const getActualIndexBounds = () => {
+      if (!agePickerOptions.length) {
+        return { min: 0, max: 0 };
+      }
+
+      return {
+        min: AGE_GATE_FILLER_COUNT,
+        max: agePickerOptions.length - AGE_GATE_FILLER_COUNT - 1
+      };
+    };
+
+    const clampToActualIndex = (index) => {
+      const bounds = getActualIndexBounds();
+      return Math.min(Math.max(index, bounds.min), bounds.max);
+    };
+
+    const setActiveAgeOption = (option) => {
+      if (activeAgeOption) {
+        activeAgeOption.classList.remove('age-option-active');
+        activeAgeOption.setAttribute('aria-selected', 'false');
+      }
+
+      if (!option || option.classList.contains('age-picker-spacer')) {
+        activeAgeOption = null;
+        selectedBirthYear = null;
+        if (agePicker) {
+          agePicker.removeAttribute('aria-activedescendant');
+        }
+        return;
+      }
+
+      option.classList.add('age-option-active');
+      option.setAttribute('aria-selected', 'true');
+      activeAgeOption = option;
+      selectedBirthYear = parseInt(option.dataset.year, 10);
+      if (agePicker) {
+        agePicker.setAttribute('aria-activedescendant', option.id);
+      }
+      setAgeGateMessage(null);
+    };
+
+    const scrollToAgeOption = (option, behavior = 'smooth') => {
+      if (!agePicker || !option) return;
+      if (!agePickerOptionHeight) {
+        measureOptionHeight();
+      }
+
+      const index = agePickerOptions.indexOf(option);
+      if (index === -1 || !agePickerOptionHeight) return;
+      const targetTop = index * agePickerOptionHeight;
+
+      if (behavior === 'auto') {
+        agePicker.scrollTop = targetTop;
+      } else {
+        agePicker.scrollTo({ top: targetTop, behavior });
+      }
+
+      setActiveAgeOption(option);
+    };
+
+    const scrollToYear = (year, behavior = 'smooth') => {
+      if (!agePickerOptions.length) return;
+      if (year < AGE_GATE_YEAR_START || year > AGE_GATE_YEAR_END) return;
+
+      const offset = AGE_GATE_YEAR_END - year;
+      const index = AGE_GATE_FILLER_COUNT + offset;
+      const option = agePickerOptions[index];
+      if (option) {
+        scrollToAgeOption(option, behavior);
+      }
+    };
+
+    const updateActiveFromScroll = () => {
+      if (!agePicker || !agePickerOptionHeight) {
+        measureOptionHeight();
+      }
+
+      if (!agePicker || !agePickerOptionHeight) return;
+
+      const rawIndex = Math.round(agePicker.scrollTop / agePickerOptionHeight);
+      const index = clampToActualIndex(rawIndex);
+      const option = agePickerOptions[index];
+      if (option && option !== activeAgeOption) {
+        setActiveAgeOption(option);
+      }
+    };
+
+    const snapToNearest = (behavior = 'smooth') => {
+      if (!agePicker || !agePickerOptionHeight) return;
+
+      const rawIndex = Math.round(agePicker.scrollTop / agePickerOptionHeight);
+      const index = clampToActualIndex(rawIndex);
+      const option = agePickerOptions[index];
+      if (!option) return;
+
+      const desiredTop = index * agePickerOptionHeight;
+      if (Math.abs(agePicker.scrollTop - desiredTop) > 1) {
+        if (behavior === 'auto') {
+          agePicker.scrollTop = desiredTop;
+        } else {
+          agePicker.scrollTo({ top: desiredTop, behavior });
+        }
+      }
+
+      setActiveAgeOption(option);
+    };
+
+    const moveAgeSelection = (direction) => {
+      if (!activeAgeOption) return;
+      const currentIndex = agePickerOptions.indexOf(activeAgeOption);
+      if (currentIndex === -1) return;
+
+      const bounds = getActualIndexBounds();
+      let nextIndex = currentIndex + direction;
+      nextIndex = Math.min(Math.max(nextIndex, bounds.min), bounds.max);
+
+      const option = agePickerOptions[nextIndex];
+      if (option) {
+        scrollToAgeOption(option);
+      }
+    };
+
+    const getFocusableAgeGateElements = () => {
+      if (!ageGate || ageGate.hidden) return [];
+
+      return Array.from(
+        ageGate.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
+      ).filter(
+        (element) =>
+          !element.hasAttribute('disabled') &&
+          element.getAttribute('tabindex') !== '-1' &&
+          element.closest('[hidden]') === null
+      );
+    };
+
+    const hideAgeGate = (immediate = false) => {
+      if (!ageGate || ageGate.hidden) return;
+
+      ageGate.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('age-gate-open');
+
+      if (immediate) {
+        ageGate.hidden = true;
+        ageGate.classList.remove('is-hidden');
+        return;
+      }
+
+      ageGate.classList.add('is-hidden');
+      window.setTimeout(() => {
+        if (ageGate.classList.contains('is-hidden')) {
+          ageGate.hidden = true;
+          ageGate.classList.remove('is-hidden');
+        }
+      }, 280);
+    };
+
+    const showAgeGate = (initial = false) => {
+      if (!ageGate) return;
+
+      ageGate.hidden = false;
+      ageGate.removeAttribute('aria-hidden');
+      document.body.classList.add('age-gate-open');
+
+      if (!initial) {
+        ageGate.classList.add('is-hidden');
+        requestAnimationFrame(() => {
+          ageGate.classList.remove('is-hidden');
+        });
+      }
+
+      window.setTimeout(() => {
+        if (agePicker) {
+          agePicker.focus({ preventScroll: true });
+        }
+      }, 60);
+    };
+
+    const updateAgeGateLanguage = (locale) => {
+      if (ageGateCloseButton) {
+        ageGateCloseButton.setAttribute(
+          'aria-label',
+          locale === 'vi' ? 'Đóng cửa sổ xác minh tuổi' : 'Close age confirmation'
+        );
+      }
+
+      if (agePicker) {
+        agePicker.setAttribute(
+          'aria-label',
+          locale === 'vi' ? 'Chọn năm sinh của bạn' : 'Select your birth year'
+        );
+      }
+
+      if (ageGateConfirmButton) {
+        ageGateConfirmButton.setAttribute('aria-label', translations[locale].ageGateConfirm);
+      }
+
+      if (ageGateFootnote && ageGateFootnote.dataset.messageKey) {
+        const message = getAgeGateMessage(ageGateFootnote.dataset.messageKey, locale);
+        if (message) {
+          ageGateFootnote.textContent = message;
+        }
+      }
+    };
+
+    const confirmAgeGate = () => {
+      if (!selectedBirthYear) {
+        setAgeGateMessage('error');
+        if (agePicker) {
+          agePicker.focus({ preventScroll: true });
+        }
+        return;
+      }
+
+      localStorage.setItem(AGE_GATE_STORAGE_KEY, 'verified');
+      localStorage.setItem(AGE_GATE_BIRTH_YEAR_KEY, String(selectedBirthYear));
+      setAgeGateMessage(null);
+      hideAgeGate();
+    };
+
+    const dismissAgeGate = () => {
+      localStorage.setItem(AGE_GATE_STORAGE_KEY, 'dismissed');
+      setAgeGateMessage(null);
+      hideAgeGate();
+    };
+
+    const handleAgeGateKeydown = (event) => {
+      if (!ageGate || ageGate.hidden) return;
+
+      if (event.key === 'Tab') {
+        const focusable = getFocusableAgeGateElements();
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey) {
+          if (document.activeElement === first || !ageGate.contains(document.activeElement)) {
+            last.focus();
+            event.preventDefault();
+          }
+        } else if (document.activeElement === last) {
+          first.focus();
+          event.preventDefault();
+        }
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        dismissAgeGate();
+      }
+    };
+
+    const initializeAgeGate = () => {
+      if (ageGateInitialized || !ageGate || !agePicker || !agePickerList) return;
+      ageGateInitialized = true;
+
+      const fragment = document.createDocumentFragment();
+      const createSpacer = () => {
+        const spacer = document.createElement('li');
+        spacer.className = 'age-picker-option age-picker-spacer';
+        spacer.setAttribute('aria-hidden', 'true');
+        spacer.setAttribute('role', 'presentation');
+        fragment.appendChild(spacer);
+      };
+
+      for (let i = 0; i < AGE_GATE_FILLER_COUNT; i += 1) {
+        createSpacer();
+      }
+
+      for (let year = AGE_GATE_YEAR_END; year >= AGE_GATE_YEAR_START; year -= 1) {
+        const option = document.createElement('li');
+        option.className = 'age-picker-option';
+        option.dataset.year = String(year);
+        option.id = `age-option-${year}`;
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
+        option.textContent = year;
+        fragment.appendChild(option);
+      }
+
+      for (let i = 0; i < AGE_GATE_FILLER_COUNT; i += 1) {
+        createSpacer();
+      }
+
+      agePickerList.appendChild(fragment);
+      agePickerOptions = Array.from(agePickerList.children);
+
+      measureOptionHeight();
+
+      const storedYear = parseInt(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY), 10);
+      const defaultYear =
+        Number.isInteger(storedYear) &&
+        storedYear >= AGE_GATE_YEAR_START &&
+        storedYear <= AGE_GATE_YEAR_END
+          ? storedYear
+          : 2000;
+
+      scrollToYear(defaultYear, 'auto');
+      snapToNearest('auto');
+
+      agePicker.addEventListener('scroll', () => {
+        updateActiveFromScroll();
+        if (agePickerScrollTimeout) {
+          clearTimeout(agePickerScrollTimeout);
+        }
+        agePickerScrollTimeout = window.setTimeout(() => {
+          snapToNearest();
+        }, 120);
+      });
+
+      agePicker.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          moveAgeSelection(-1);
+        } else if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          moveAgeSelection(1);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          const bounds = getActualIndexBounds();
+          scrollToAgeOption(agePickerOptions[bounds.min]);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          const bounds = getActualIndexBounds();
+          scrollToAgeOption(agePickerOptions[bounds.max]);
+        } else if (event.key === 'Enter') {
+          event.preventDefault();
+          snapToNearest();
+          confirmAgeGate();
+        }
+      });
+
+      agePicker.addEventListener('focus', () => {
+        if (!activeAgeOption) {
+          snapToNearest('auto');
+        }
+      });
+
+      agePickerList.addEventListener('click', (event) => {
+        const option = event.target.closest('.age-picker-option');
+        if (!option || option.classList.contains('age-picker-spacer')) return;
+        scrollToAgeOption(option);
+      });
+
+      if (ageGateCloseButton) {
+        ageGateCloseButton.addEventListener('click', () => {
+          dismissAgeGate();
+        });
+      }
+
+      if (ageGateConfirmButton) {
+        ageGateConfirmButton.addEventListener('click', () => {
+          confirmAgeGate();
+        });
+      }
+
+      ageGate.addEventListener('keydown', handleAgeGateKeydown);
+
+      window.addEventListener('resize', () => {
+        const previousHeight = agePickerOptionHeight;
+        measureOptionHeight();
+        if (
+          agePickerOptionHeight &&
+          previousHeight !== agePickerOptionHeight &&
+          activeAgeOption
+        ) {
+          scrollToAgeOption(activeAgeOption, 'auto');
+        }
+      });
+
+      const status = localStorage.getItem(AGE_GATE_STORAGE_KEY);
+      if (status === 'verified' || status === 'dismissed') {
+        hideAgeGate(true);
+      } else {
+        showAgeGate(true);
+      }
+    };
+
     const setLanguage = (language) => {
       const locale = language === 'vi' ? 'vi' : 'en';
       currentLanguage = locale;
       applyTranslations(locale);
       updateToggleLabel(locale);
+      updateAgeGateLanguage(locale);
       localStorage.setItem(LANGUAGE_STORAGE_KEY, locale);
     };
 
@@ -339,6 +808,7 @@
     }
 
     setLanguage(currentLanguage);
+    initializeAgeGate();
   </script>
 </body>
 </html>
