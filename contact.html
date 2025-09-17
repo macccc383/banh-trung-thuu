@@ -341,6 +341,28 @@
       setAgeGateMessage(null);
     };
 
+    const getScrollTopForIndex = (index) => {
+      if (!agePickerOptionHeight) {
+        measureOptionHeight();
+      }
+
+      if (!agePickerOptionHeight) return 0;
+
+      const bounds = getActualIndexBounds();
+      const boundedIndex = Math.min(Math.max(index, bounds.min), bounds.max);
+      return (boundedIndex - AGE_GATE_FILLER_COUNT) * agePickerOptionHeight;
+    };
+
+    const getIndexFromScrollTop = () => {
+      if (!agePickerOptionHeight) {
+        measureOptionHeight();
+      }
+
+      if (!agePickerOptionHeight) return AGE_GATE_FILLER_COUNT;
+      const rawIndex = Math.round(agePicker.scrollTop / agePickerOptionHeight) + AGE_GATE_FILLER_COUNT;
+      return clampToActualIndex(rawIndex);
+    };
+
     const scrollToAgeOption = (option, behavior = 'smooth') => {
       if (!agePicker || !option) return;
       if (!agePickerOptionHeight) {
@@ -349,7 +371,7 @@
 
       const index = agePickerOptions.indexOf(option);
       if (index === -1 || !agePickerOptionHeight) return;
-      const targetTop = index * agePickerOptionHeight;
+      const targetTop = getScrollTopForIndex(index);
 
       if (behavior === 'auto') {
         agePicker.scrollTop = targetTop;
@@ -379,8 +401,7 @@
 
       if (!agePicker || !agePickerOptionHeight) return;
 
-      const rawIndex = Math.round(agePicker.scrollTop / agePickerOptionHeight);
-      const index = clampToActualIndex(rawIndex);
+      const index = getIndexFromScrollTop();
       const option = agePickerOptions[index];
       if (option && option !== activeAgeOption) {
         setActiveAgeOption(option);
@@ -390,12 +411,11 @@
     const snapToNearest = (behavior = 'smooth') => {
       if (!agePicker || !agePickerOptionHeight) return;
 
-      const rawIndex = Math.round(agePicker.scrollTop / agePickerOptionHeight);
-      const index = clampToActualIndex(rawIndex);
+      const index = getIndexFromScrollTop();
       const option = agePickerOptions[index];
       if (!option) return;
 
-      const desiredTop = index * agePickerOptionHeight;
+      const desiredTop = getScrollTopForIndex(index);
       if (Math.abs(agePicker.scrollTop - desiredTop) > 1) {
         if (behavior === 'auto') {
           agePicker.scrollTop = desiredTop;
