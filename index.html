@@ -84,8 +84,20 @@
             />
           </figure>
           <span class="card-overline" data-i18n="heroCardOverline">Moonlit Signature</span>
-          <h2 data-i18n="heroCardTitle">Lotus Seed &amp; Golden Yolk</h2>
-          <p data-i18n="heroCardDescription">A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.</p>
+          <h2
+            data-i18n="heroCardTitle"
+            data-i18n-classic="heroCardTitle"
+            data-i18n-genz="heroCardTitleGenZ"
+          >
+            Lotus Seed &amp; Golden Yolk
+          </h2>
+          <p
+            data-i18n="heroCardDescription"
+            data-i18n-classic="heroCardDescription"
+            data-i18n-genz="heroCardDescriptionGenZ"
+          >
+            A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.
+          </p>
           <div class="hero-card-footer">
             <span data-i18n="heroCardFootnote1">Limited seasonal batch</span>
             <span data-i18n="heroCardFootnote2">Available now</span>
@@ -218,6 +230,9 @@
         heroCardTitle: 'Lotus Seed & Golden Yolk',
         heroCardDescription:
           'A harmonious blend of velvety lotus paste and salted egg yolk crafted for family traditions.',
+        heroCardTitleGenZ: 'Lava Mooncake with Aged Melting Eggs',
+        heroCardDescriptionGenZ:
+          'Custard lava mooncakes with slow-aged salted egg centres crafted for bold-night celebrations.',
         heroCardFootnote1: 'Limited seasonal batch',
         heroCardFootnote2: 'Available now',
         galleryHeading: 'Moments from Our Bakery',
@@ -279,6 +294,9 @@
         heroCardTitle: 'Hạt sen & trứng muối vàng',
         heroCardDescription:
           'Sự hòa quyện của nhân sen mịn màng và trứng muối đậm đà dành cho những buổi đoàn viên gia đình.',
+        heroCardTitleGenZ: 'Hộp Lava trứng chảy',
+        heroCardDescriptionGenZ:
+          'Phiên bản lava sánh mịn cùng trứng muối ủ lâu cho trải nghiệm tan chảy đậm đà.',
         heroCardFootnote1: 'Sản xuất theo mùa giới hạn',
         heroCardFootnote2: 'Đang mở bán',
         galleryHeading: 'Khoảnh khắc từ tiệm bánh của chúng tôi',
@@ -338,6 +356,9 @@
     const AGE_GATE_YEAR_START = 1945;
     const AGE_GATE_YEAR_END = 2025;
     const AGE_GATE_FILLER_COUNT = 2;
+    const GEN_Z_YEAR_THRESHOLD = 1997;
+    const GENERATION_CLASSIC = 'classic';
+    const GENERATION_GEN_Z = 'genZ';
 
     const translatableElements = document.querySelectorAll('[data-i18n]');
     const languageToggle = document.getElementById('language-toggle');
@@ -347,6 +368,86 @@
     const ageGateCloseButton = document.getElementById('age-gate-close');
     const ageGateConfirmButton = document.getElementById('age-gate-confirm');
     const ageGateFootnote = document.getElementById('age-gate-footnote');
+    const generationAwareElements = document.querySelectorAll('[data-i18n-classic], [data-i18n-genz]');
+    const heroCardImage = document.querySelector('.hero-card-media img');
+    const generationGroups = document.querySelectorAll('[data-generation-group]');
+    const heroCardMediaConfig = {
+      [GENERATION_CLASSIC]: {
+        src: 'vn-11134207-7r98o-lr866fv2vj5w60-3532510397.jpg',
+        alt: {
+          en: 'Lotus seed and salted egg yolk mooncake gift box with gilded accents.',
+          vi: 'Hộp bánh trung thu hạt sen và trứng muối vàng với họa tiết ánh kim.'
+        }
+      },
+      [GENERATION_GEN_Z]: {
+        src: 'Gen%20Z/lava-trung-chay-6-banh-2025.jpg',
+        alt: {
+          en: 'Lava mooncake gift box featuring aged molten salted egg fillings.',
+          vi: 'Hộp bánh lava trứng chảy với nhân trứng muối ủ lâu tan chảy.'
+        }
+      }
+    };
+
+    function parseBirthYear(value) {
+      const year = Number.parseInt(value, 10);
+      if (!Number.isInteger(year)) {
+        return null;
+      }
+      if (year < AGE_GATE_YEAR_START || year > AGE_GATE_YEAR_END) {
+        return null;
+      }
+      return year;
+    }
+
+    function determineGenerationFromBirthYear(year) {
+      if (Number.isInteger(year) && year > GEN_Z_YEAR_THRESHOLD) {
+        return GENERATION_GEN_Z;
+      }
+      return GENERATION_CLASSIC;
+    }
+
+    function applyGenerationMode() {
+      const isGenZ = currentGeneration === GENERATION_GEN_Z;
+
+      document.body.classList.toggle('generation-genz', isGenZ);
+      document.body.classList.toggle('generation-classic', !isGenZ);
+
+      generationAwareElements.forEach((element) => {
+        const targetKey = isGenZ ? element.dataset.i18nGenz : element.dataset.i18nClassic;
+        if (targetKey) {
+          element.dataset.i18n = targetKey;
+        }
+      });
+
+      if (heroCardImage) {
+        const config = heroCardMediaConfig[isGenZ ? GENERATION_GEN_Z : GENERATION_CLASSIC];
+        if (config?.src && heroCardImage.getAttribute('src') !== config.src) {
+          heroCardImage.setAttribute('src', config.src);
+        }
+        if (config?.alt) {
+          const altText = config.alt[currentLanguage] ?? config.alt.en;
+          if (altText) {
+            heroCardImage.setAttribute('alt', altText);
+          }
+        }
+      }
+
+      generationGroups.forEach((group) => {
+        const mode = group.dataset.generationGroup;
+        if (mode === GENERATION_GEN_Z) {
+          group.hidden = !isGenZ;
+        } else if (mode === GENERATION_CLASSIC) {
+          group.hidden = isGenZ;
+        }
+      });
+    }
+
+    function updateGenerationFromBirthYear(year) {
+      const parsedYear = typeof year === 'number' ? year : parseBirthYear(year);
+      currentGeneration = determineGenerationFromBirthYear(parsedYear);
+      applyGenerationMode();
+      applyTranslations(currentLanguage);
+    }
 
     let agePickerOptions = [];
     let agePickerOptionHeight = 0;
@@ -354,6 +455,9 @@
     let selectedBirthYear = null;
     let ageGateInitialized = false;
     let agePickerScrollTimeout;
+    let currentGeneration = determineGenerationFromBirthYear(
+      parseBirthYear(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY))
+    );
 
     const LANGUAGE_STORAGE_KEY = 'kinhdoLanguage';
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -651,6 +755,7 @@
 
       localStorage.setItem(AGE_GATE_STORAGE_KEY, 'verified');
       localStorage.setItem(AGE_GATE_BIRTH_YEAR_KEY, String(selectedBirthYear));
+      updateGenerationFromBirthYear(selectedBirthYear);
       setAgeGateMessage(null);
       hideAgeGate();
     };
@@ -723,13 +828,8 @@
 
       measureOptionHeight();
 
-      const storedYear = parseInt(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY), 10);
-      const defaultYear =
-        Number.isInteger(storedYear) &&
-        storedYear >= AGE_GATE_YEAR_START &&
-        storedYear <= AGE_GATE_YEAR_END
-          ? storedYear
-          : 2000;
+      const storedYear = parseBirthYear(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY));
+      const defaultYear = Number.isInteger(storedYear) ? storedYear : 2000;
 
       scrollToYear(defaultYear, 'auto');
       snapToNearest('auto');
@@ -815,6 +915,7 @@
     const setLanguage = (language) => {
       const locale = language === 'vi' ? 'vi' : 'en';
       currentLanguage = locale;
+      applyGenerationMode();
       applyTranslations(locale);
       updateToggleLabel(locale);
       updateAgeGateLanguage(locale);
