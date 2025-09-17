@@ -249,11 +249,13 @@
       margin: 0 0 1.25rem;
       border-radius: var(--rounded-medium);
       overflow: hidden;
+      box-shadow: var(--shadow-soft);
     }
 
     .hero-card-media img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
       display: block;
     }
 
@@ -748,6 +750,56 @@
 
       header.site-header {
         position: sticky;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main section {
+        padding: 3rem 0;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .header-actions .btn {
+        flex: 1 1 150px;
+      }
+
+      .cta-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-card {
+        text-align: center;
+      }
+
+      .hero-card-footer {
+        justify-content: center;
+      }
+
+      .hero-card-media {
+        margin: 0 auto 1.25rem;
+        max-width: 320px;
+      }
+
+      .product-meta {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .product-meta .price {
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+
+      .product-meta .btn {
+        width: 100%;
       }
     }
 
