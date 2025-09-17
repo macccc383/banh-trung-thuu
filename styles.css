@@ -759,8 +759,8 @@
       }
 
       .photo-gallery .container {
-        width: min(1120px, 96vw);
-        padding: 2rem;
+        width: min(1120px, 100vw);
+        padding: 2.25rem 1.5rem;
       }
 
       .gallery-card {
@@ -768,7 +768,8 @@
       }
 
       .gallery-card img {
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
       }
 
       .header-actions {
