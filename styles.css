@@ -383,6 +383,10 @@
       object-fit: cover;
     }
 
+    .gallery-card:nth-child(4) img {
+      object-position: 30% center;
+    }
+
     .gallery-card figcaption {
       margin: 0;
       color: var(--text-muted);
