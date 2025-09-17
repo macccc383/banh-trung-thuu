@@ -758,6 +758,19 @@
         padding: 3rem 0;
       }
 
+      .photo-gallery .container {
+        width: min(1120px, 96vw);
+        padding: 2rem;
+      }
+
+      .gallery-card {
+        padding: 1rem;
+      }
+
+      .gallery-card img {
+        aspect-ratio: 4 / 3;
+      }
+
       .header-actions {
         width: 100%;
         justify-content: center;
