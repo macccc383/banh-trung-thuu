@@ -621,6 +621,15 @@
       object-fit: cover;
     }
 
+    body.generation-genz .hero--home .hero-card-media {
+      aspect-ratio: auto;
+    }
+
+    body.generation-genz .hero--home .hero-card-media img {
+      height: auto;
+      object-fit: contain;
+    }
+
     .stat-card {
       background: rgba(255, 255, 255, 0.78);
       padding: 1.25rem 1.5rem;
