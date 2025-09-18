@@ -379,12 +379,43 @@
       align-items: center;
     }
 
+    .hero--home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(6rem, 12vw, 8rem) 0;
+      min-height: clamp(620px, 90vh, 860px);
+      color: #fff;
+      background: url('su_that_banh_trung_thu_kinh_do.jpg') center / cover no-repeat;
+    }
+
+    .hero--home::before {
+      inset: 0;
+      width: auto;
+      height: auto;
+      transform: none;
+      background: linear-gradient(120deg, rgba(26, 12, 10, 0.82) 0%, rgba(26, 12, 10, 0.38) 45%, rgba(26, 12, 10, 0.7) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero--home .container {
+      position: relative;
+      z-index: 1;
+      justify-items: center;
+      gap: clamp(2rem, 5vw, 3.5rem);
+    }
+
     .hero-eyebrow {
       font-size: 0.85rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--brand-primary);
       font-weight: 600;
+    }
+
+    .hero--home .hero-eyebrow {
+      color: #ffe6d9;
     }
 
     .hero h1 {
@@ -395,10 +426,22 @@
       color: var(--brand-dark);
     }
 
+    .hero--home h1 {
+      color: #fff;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+    }
+
     .hero p {
       color: var(--text-muted);
       font-size: clamp(1rem, 1.2vw, 1.1rem);
       margin-bottom: 1.75rem;
+    }
+
+    .hero--home p {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
     }
 
     .cta-group {
@@ -407,9 +450,36 @@
       gap: 1rem;
     }
 
+    .hero--home .cta-group {
+      justify-content: center;
+    }
+
+    .hero--home .btn-ghost {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #fff;
+    }
+
+    .hero--home .btn-ghost:hover,
+    .hero--home .btn-ghost:focus {
+      background: rgba(255, 255, 255, 0.32);
+      color: #fff;
+    }
+
     .hero-note {
       display: grid;
       gap: 1.25rem;
+    }
+
+    .hero--home .hero-note {
+      gap: clamp(1.25rem, 4vw, 1.75rem);
+      justify-items: center;
+      text-align: center;
+      max-width: 640px;
+    }
+
+    .hero--home .hero-content {
+      align-content: center;
     }
 
     .hero-note-card {
@@ -500,6 +570,55 @@
 
     .hero-card-footer span:last-child {
       color: var(--brand-dark);
+    }
+
+    .hero--home .hero-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: clamp(1.75rem, 4vw, 2.25rem);
+      background: rgba(12, 6, 5, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 26px 54px -34px rgba(4, 2, 1, 0.75);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .hero--home .hero-card h2 {
+      color: #fff;
+      font-size: clamp(2rem, 3.8vw, 2.6rem);
+    }
+
+    .hero--home .hero-card p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .hero--home .hero-card .card-overline {
+      color: #ffd5b4;
+    }
+
+    .hero--home .hero-card-footer {
+      color: #ffd5b4;
+    }
+
+    .hero--home .hero-card-footer span:last-child {
+      color: #fff;
+    }
+
+    .hero--home .hero-card-media {
+      order: 5;
+      margin: 1.25rem 0 0;
+      border-radius: var(--rounded-medium);
+      overflow: hidden;
+      box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.75);
+      aspect-ratio: 4 / 5;
+    }
+
+    .hero--home .hero-card-media img {
+      height: 100%;
+      object-fit: cover;
     }
 
     .stat-card {
@@ -1008,6 +1127,11 @@
         padding: 3rem 0;
       }
 
+      .hero--home {
+        padding: clamp(4.5rem, 16vw, 6rem) 0;
+        min-height: auto;
+      }
+
       .our-story {
         padding: 2rem;
       }
@@ -1063,6 +1187,10 @@
       .hero-card-media {
         margin: 0 auto 1.25rem;
         max-width: 320px;
+      }
+
+      .hero--home .hero-card-media {
+        margin: 1.25rem auto 0;
       }
 
       .product-meta {
