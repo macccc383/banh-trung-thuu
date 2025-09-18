@@ -132,13 +132,15 @@
 
   <footer>
     <div class="container">
-      <small>&copy; <span id="year"></span> <span data-i18n="footerCopy">Kinh Do Foods. Bảo lưu mọi quyền.</span></small>
-      <small><span data-i18n="footerSocial">Theo dõi hành trình của chúng tôi trên</span> <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></small>
+      <small>Made by Dan for team 4</small>
     </div>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
 
     const translations = {
       en: {
