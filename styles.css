@@ -1013,7 +1013,7 @@
       }
 
       .story-card-media {
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 16 / 9;
       }
 
       .photo-gallery .container {
