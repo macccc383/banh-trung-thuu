@@ -1008,6 +1008,14 @@
         padding: 3rem 0;
       }
 
+      .our-story {
+        padding: 2rem;
+      }
+
+      .story-card-media {
+        aspect-ratio: 3 / 4;
+      }
+
       .photo-gallery .container {
         width: min(1120px, 100vw);
         padding: 2.5rem 1rem;
@@ -1020,6 +1028,13 @@
       .gallery-card img {
         aspect-ratio: 4 / 5;
         border-radius: 22px;
+      }
+
+      .section-heading-media {
+        margin: 1.5rem 0;
+        max-width: none;
+        width: 100%;
+        aspect-ratio: 3 / 4;
       }
 
       .header-actions {
