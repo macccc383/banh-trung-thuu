@@ -620,6 +620,63 @@
       object-fit: contain;
     }
 
+    .feature-announcement {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 244, 240, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+      overflow: hidden;
+    }
+
+    .feature-announcement::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -10%;
+      width: clamp(220px, 40vw, 320px);
+      height: clamp(220px, 40vw, 320px);
+      background: radial-gradient(circle at 50% 50%, rgba(215, 31, 38, 0.12) 0%, rgba(215, 31, 38, 0) 70%);
+      z-index: 0;
+    }
+
+    .feature-announcement__content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: clamp(2rem, 6vw, 4rem);
+      align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-announcement__text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature-announcement__title {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      color: var(--brand-dark);
+    }
+
+    .feature-announcement__description {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .feature-announcement__media {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .feature-announcement__media img {
+      width: min(420px, 100%);
+      border-radius: var(--rounded-large);
+      box-shadow: var(--shadow-soft);
+    }
+
     .stat-card {
       background: rgba(255, 255, 255, 0.78);
       padding: 1.25rem 1.5rem;
@@ -1119,6 +1176,19 @@
       header.site-header {
         position: sticky;
       }
+
+      .feature-announcement__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .feature-announcement__text {
+        align-items: center;
+      }
+
+      .feature-announcement__media {
+        order: -1;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1142,6 +1212,10 @@
       .photo-gallery .container {
         width: min(1120px, 100vw);
         padding: 2.5rem 1rem;
+      }
+
+      .feature-announcement__media img {
+        width: min(320px, 100%);
       }
 
       .gallery-card {
