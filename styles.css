@@ -681,13 +681,13 @@
 
       .feature-announcement__content {
         justify-content: flex-end;
-        padding-top: clamp(10rem, 34vw, 18rem);
+        padding-top: clamp(14rem, 42vw, 24rem);
         padding-bottom: clamp(2.5rem, 12vw, 5rem);
       }
 
       .feature-announcement__text {
         padding: 0 clamp(1rem, 6vw, 2rem);
-        margin-top: clamp(3rem, 12vw, 6rem);
+        margin-top: clamp(5rem, 20vw, 10rem);
       }
     }
 
