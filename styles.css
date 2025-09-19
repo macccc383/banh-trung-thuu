@@ -671,12 +671,12 @@
         background-size: contain;
         background-position: top center;
         background-repeat: no-repeat;
-        min-height: 150vw;
+        min-height: 185vw;
       }
 
       .feature-announcement__content {
         justify-content: flex-end;
-        padding-top: clamp(2rem, 12vw, 4rem);
+        padding-top: clamp(6rem, 22vw, 10rem);
         padding-bottom: clamp(3rem, 16vw, 6rem);
       }
 
