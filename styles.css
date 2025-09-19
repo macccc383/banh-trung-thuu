@@ -622,17 +622,16 @@
 
     .feature-announcement {
       position: relative;
-      background: linear-gradient(135deg, rgba(255, 244, 240, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+      background: url('songtung.png') center / cover no-repeat;
       overflow: hidden;
     }
 
     .feature-announcement::before {
       content: "";
       position: absolute;
-      inset: -30% auto auto -10%;
-      width: clamp(220px, 40vw, 320px);
-      height: clamp(220px, 40vw, 320px);
-      background: radial-gradient(circle at 50% 50%, rgba(215, 31, 38, 0.12) 0%, rgba(215, 31, 38, 0) 70%);
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 244, 240, 0.9) 0%, rgba(255, 255, 255, 0.65) 100%);
+      backdrop-filter: blur(4px);
       z-index: 0;
     }
 
@@ -644,6 +643,7 @@
       gap: clamp(2rem, 6vw, 4rem);
       align-items: center;
       text-align: center;
+      padding: clamp(3rem, 10vw, 6rem) 0;
     }
 
     .feature-announcement__text {
@@ -652,6 +652,11 @@
       gap: 1.5rem;
       align-items: center;
       max-width: min(720px, 100%);
+      padding: clamp(2rem, 5vw, 3rem);
+      border-radius: var(--rounded-large);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px);
     }
 
     .feature-announcement__title {
@@ -668,17 +673,6 @@
       font-style: italic;
     }
 
-    .feature-announcement__media {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    .feature-announcement__media img {
-      width: min(560px, 100%);
-      border-radius: var(--rounded-large);
-      box-shadow: var(--shadow-soft);
-    }
 
     .stat-card {
       background: rgba(255, 255, 255, 0.78);
@@ -1206,10 +1200,6 @@
       .photo-gallery .container {
         width: min(1120px, 100vw);
         padding: 2.5rem 1rem;
-      }
-
-      .feature-announcement__media img {
-        width: min(320px, 100%);
       }
 
       .gallery-card {
