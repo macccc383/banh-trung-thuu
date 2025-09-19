@@ -543,6 +543,7 @@
 
     const dismissAgeGate = () => {
       localStorage.setItem(AGE_GATE_STORAGE_KEY, 'dismissed');
+      localStorage.removeItem(AGE_GATE_BIRTH_YEAR_KEY);
       setAgeGateMessage(null);
       hideAgeGate();
     };
