@@ -407,9 +407,12 @@
     const AGE_GATE_YEAR_START = 1945;
     const AGE_GATE_YEAR_END = 2025;
     const AGE_GATE_FILLER_COUNT = 2;
+    const AGE_GATE_STATUS_VERIFIED = 'verified';
+    const AGE_GATE_STATUS_DISMISSED = 'dismissed';
     const GEN_Z_YEAR_THRESHOLD = 1997;
     const GENERATION_CLASSIC = 'classic';
     const GENERATION_GEN_Z = 'genZ';
+    const GENERATION_ALL = 'all';
 
     const translatableElements = document.querySelectorAll('[data-i18n]');
     const languageToggle = document.getElementById('language-toggle');
@@ -458,20 +461,28 @@
     }
 
     function applyGenerationMode() {
+      const showAllGenerations = currentGeneration === GENERATION_ALL;
       const isGenZ = currentGeneration === GENERATION_GEN_Z;
 
-      document.body.classList.toggle('generation-genz', isGenZ);
-      document.body.classList.toggle('generation-classic', !isGenZ);
+      document.body.classList.remove('generation-genz', 'generation-classic');
+      if (isGenZ) {
+        document.body.classList.add('generation-genz');
+      } else if (currentGeneration === GENERATION_CLASSIC) {
+        document.body.classList.add('generation-classic');
+      }
 
       generationAwareElements.forEach((element) => {
-        const targetKey = isGenZ ? element.dataset.i18nGenz : element.dataset.i18nClassic;
+        const targetKey = isGenZ
+          ? element.dataset.i18nGenz || element.dataset.i18n
+          : element.dataset.i18nClassic || element.dataset.i18n;
         if (targetKey) {
           element.dataset.i18n = targetKey;
         }
       });
 
       if (heroCardImage) {
-        const config = heroCardMediaConfig[isGenZ ? GENERATION_GEN_Z : GENERATION_CLASSIC];
+        const configKey = isGenZ ? GENERATION_GEN_Z : GENERATION_CLASSIC;
+        const config = heroCardMediaConfig[configKey];
         if (config?.src && heroCardImage.getAttribute('src') !== config.src) {
           heroCardImage.setAttribute('src', config.src);
         }
@@ -485,17 +496,26 @@
 
       generationGroups.forEach((group) => {
         const mode = group.dataset.generationGroup;
+        if (showAllGenerations) {
+          group.hidden = false;
+          return;
+        }
+
         if (mode === GENERATION_GEN_Z) {
           group.hidden = !isGenZ;
         } else if (mode === GENERATION_CLASSIC) {
-          group.hidden = isGenZ;
+          group.hidden = currentGeneration !== GENERATION_CLASSIC;
         }
       });
     }
 
     function updateGenerationFromBirthYear(year) {
       const parsedYear = typeof year === 'number' ? year : parseBirthYear(year);
-      currentGeneration = determineGenerationFromBirthYear(parsedYear);
+      if (Number.isInteger(parsedYear)) {
+        currentGeneration = determineGenerationFromBirthYear(parsedYear);
+      } else {
+        currentGeneration = GENERATION_ALL;
+      }
       applyGenerationMode();
       applyTranslations(currentLanguage);
     }
@@ -506,9 +526,12 @@
     let selectedBirthYear = null;
     let ageGateInitialized = false;
     let agePickerScrollTimeout;
-    let currentGeneration = determineGenerationFromBirthYear(
-      parseBirthYear(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY))
-    );
+    const storedAgeGateStatus = localStorage.getItem(AGE_GATE_STORAGE_KEY);
+    const storedBirthYear = parseBirthYear(localStorage.getItem(AGE_GATE_BIRTH_YEAR_KEY));
+    let currentGeneration =
+      storedAgeGateStatus === AGE_GATE_STATUS_DISMISSED || storedBirthYear === null
+        ? GENERATION_ALL
+        : determineGenerationFromBirthYear(storedBirthYear);
 
     const LANGUAGE_STORAGE_KEY = 'kinhdoLanguage';
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -804,7 +827,7 @@
         return;
       }
 
-      localStorage.setItem(AGE_GATE_STORAGE_KEY, 'verified');
+      localStorage.setItem(AGE_GATE_STORAGE_KEY, AGE_GATE_STATUS_VERIFIED);
       localStorage.setItem(AGE_GATE_BIRTH_YEAR_KEY, String(selectedBirthYear));
       updateGenerationFromBirthYear(selectedBirthYear);
       setAgeGateMessage(null);
@@ -812,7 +835,11 @@
     };
 
     const dismissAgeGate = () => {
-      localStorage.setItem(AGE_GATE_STORAGE_KEY, 'dismissed');
+      localStorage.setItem(AGE_GATE_STORAGE_KEY, AGE_GATE_STATUS_DISMISSED);
+      localStorage.removeItem(AGE_GATE_BIRTH_YEAR_KEY);
+      currentGeneration = GENERATION_ALL;
+      applyGenerationMode();
+      applyTranslations(currentLanguage);
       setAgeGateMessage(null);
       hideAgeGate();
     };
@@ -956,7 +983,7 @@
       });
 
       const status = localStorage.getItem(AGE_GATE_STORAGE_KEY);
-      if (status === 'verified' || status === 'dismissed') {
+      if (status === AGE_GATE_STATUS_VERIFIED || status === AGE_GATE_STATUS_DISMISSED) {
         hideAgeGate(true);
       } else {
         showAgeGate(true);
