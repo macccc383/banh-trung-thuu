@@ -676,13 +676,13 @@
         background-size: contain;
         background-position: top center;
         background-repeat: no-repeat;
-        min-height: 185vw;
+        min-height: 220vw;
       }
 
       .feature-announcement__content {
         justify-content: flex-end;
-        padding-top: clamp(6rem, 22vw, 10rem);
-        padding-bottom: clamp(3rem, 16vw, 6rem);
+        padding-top: clamp(7rem, 26vw, 12rem);
+        padding-bottom: clamp(2.5rem, 12vw, 5rem);
       }
 
       .feature-announcement__text {
